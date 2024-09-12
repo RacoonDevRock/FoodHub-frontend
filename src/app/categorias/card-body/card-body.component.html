@@ -1,0 +1,71 @@
+<main>
+  <div class="card-container">
+    <div class="back-button" (click)="goBack()">
+      <img src="../../../assets/images/atras.svg" alt="atras" />
+    </div>
+
+    <div class="card">
+      <div class="card-content">
+        <div class="column-left">
+          <img src="{{ recetaDTO.imagen }}" [alt]="recetaDTO.titulo" />
+          <h2>{{ recetaDTO.titulo }}</h2>
+
+          <div class="descripcion">
+            <p>{{ recetaDTO.descripcion }}</p>
+          </div>
+        </div>
+
+        <ul>
+          <div>
+            <div class="porciones-container">
+              <p class="subtitle">Tiempo de preparación:</p>
+              <div class="cantidad-unidad-container">
+                <p class="cantidad">{{ recetaDTO.tiempoCoccion }}</p>
+                <p class="unidad">minutos</p>
+              </div>
+            </div>
+
+            <div class="porciones-container">
+              <p class="subtitle">Porciones:</p>
+              <div class="cantidad-unidad-container">
+                <p class="cantidad">{{ recetaDTO.porciones }}</p>
+                <p class="unidad">porciones</p>
+              </div>
+            </div>
+
+            <div class="porciones-container">
+              <p class="subtitle">Cantidad de calorías:</p>
+              <div class="cantidad-unidad-container">
+                <p class="cantidad">{{ recetaDTO.calorias }}</p>
+                <p class="unidad">kcal</p>
+              </div>
+            </div>
+          </div>
+        </ul>
+
+        <div class="column-right">
+          <h3>Ingredientes</h3>
+          <div class="ingredientes">
+            <ul>
+              @for (ingrediente of recetaDTO.ingredientes; track $index) {
+                <li>{{ ingrediente.ingrediente }}</li>
+              }
+            </ul>
+          </div>
+
+          <h3>Instrucciones</h3>
+          <div class="pasos">
+            <ol>
+              <div>
+                @for (instruccion of recetaDTO.instrucciones; track $index) {
+                  <p class="title-paso">Paso N°{{ $index + 1 }}</p>
+                  <p class="paso-content">{{ instruccion.instruccion }}</p>
+                }
+              </div>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

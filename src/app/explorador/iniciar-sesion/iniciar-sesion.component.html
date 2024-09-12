@@ -1,0 +1,35 @@
+<main>
+
+  <div class="formulario-container">
+    <div class="formulario-card">
+
+      <h2>Ingresa a la Gran Comunidad <br> Saludable de FoodHub</h2>
+      <p>Ingresa tus datos registrados</p>
+
+      <form>
+        <label for="identificador" >Correo Electrónico o Código de Colegiado: *</label>
+        <input type="text" placeholder="abc@example.com/012345" id="identificador" name="identificador" required >
+
+        <label for="contrasenia" >Contraseña: *</label>
+        <input type="password" placeholder="*********" id="contrasenia" name="contrasenia" required >
+
+        <button  type="submit">Ingresar</button>
+
+        <p class="obligatorio-texto">* Todos los campos son obligatorios y deben ser llenados.</p>
+
+        @if (true) {
+          <p class="error-message"></p>
+        }
+
+        <div class="separador"></div>
+
+        <p>Si aún no tienes una cuenta, entonces ¡Crea una!</p>
+
+        <button [routerLink]="['/explorador/cocinaTuCuenta']" class="boton2">¡Cocina tu Cuenta!</button>
+
+      </form>
+
+    </div>
+  </div>
+
+</main>

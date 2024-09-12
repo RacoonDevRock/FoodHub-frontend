@@ -1,0 +1,35 @@
+<main>
+  <div class="container">
+
+    <div class="column-left">
+      <app-side-categorias />
+    </div>
+
+    <div class="column-right">
+      <div
+        *ngFor="
+          let recipe of recipes
+            | paginate : { itemsPerPage: 6, currentPage: page }
+        "
+        class="card"
+        (click)="verContenido(recipe)"
+      >
+        <img [src]="recipe.imagenReceta" [alt]="recipe.titulo" />
+
+        <div class="card-content">
+          <h3>{{ recipe.titulo }}</h3>
+          <p>{{ recipe.descripcion }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pagination">
+    <pagination-controls
+      (pageChange)="page = $event"
+      previousLabel="Anterior"
+      nextLabel="Siguiente"
+    ></pagination-controls>
+  </div>
+</main>
+

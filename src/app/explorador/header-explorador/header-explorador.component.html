@@ -1,0 +1,21 @@
+<header>
+
+  <nav>
+    <div class="nav-words" [routerLinkActive]="['active']">
+      <a (click)="llevarExplorador()" [routerLink]="['/categoria']">
+        Explorar Recetas
+      </a>
+    </div>
+    <div class="logo">
+      <a [routerLink]="['/']">
+        <img src="/logo_FoodHub.png" alt="Logo FoodHub1">
+
+      </a>
+    </div>
+    <div class="nav-words" [routerLinkActive]="['active']">
+      <a [routerLink]="['/iniciarSesion']">Iniciar Sesión</a>
+    </div>
+  </nav>
+
+</header>
+

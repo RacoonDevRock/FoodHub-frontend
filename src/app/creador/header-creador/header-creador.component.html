@@ -1,0 +1,21 @@
+<header>
+  <nav>
+    <div class="nav-words" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" >
+      <a (click)="llevarCreador()" [routerLink]="['/categoria']">Explorar Recetas</a>
+    </div>
+
+    <div class="logo">
+      <img src="/logo_FoodHub.png" alt="Logo FoodHub" />
+    </div>
+
+    <div class="nav-words" [routerLinkActive]="['active']"  [routerLinkActiveOptions]="{ exact: true }" >
+      <a [routerLink]="['/ingresar/gestionDeRecetas']">Mis Recetas</a>
+    </div>
+
+    <div class="nav-words perfil-section">
+      <a [routerLink]="['/ingresar/miPerfil']">
+        <img src="/icono_perfil.png" alt="Perfil" />
+      </a>
+    </div>
+  </nav>
+</header>

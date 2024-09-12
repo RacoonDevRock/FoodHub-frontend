@@ -1,0 +1,281 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  min-height: 100vh;
+}
+
+.wrapper {
+  flex: 1;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #555;
+}
+
+.modal-text {
+  margin-bottom: 20px;
+}
+
+.orange-button {
+  background-color: #f58025;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+main {
+  flex: 1;
+  background-color: #f3f3f3;
+  padding: 60px;
+}
+
+form {
+  display: flex;
+  justify-content: space-between;
+  background-color: #ffffff;
+  padding: 50px;
+  border-radius: 10px;
+  max-width: 1350px;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-text {
+  font-size: 13px;
+  text-align: left;
+  color: #8d8686;
+  margin-bottom: 20px;
+  margin-top: -10px;
+}
+
+.column h4 {
+  font-size: small;
+  margin-bottom: 25px;
+}
+
+.column {
+  width: 33.33%;
+  background-color: white;
+  padding: 10px;
+  flex: 1;
+}
+
+.column h3 {
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.upload-container {
+  margin-bottom: 20px;
+}
+
+input,
+textarea,
+.custom-selector,
+.input-container input,
+.input-row input,
+.input-with-addon input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.input-title {
+  border-radius: 15px;
+  margin-bottom: 25px;
+}
+
+.input-image {
+  border-radius: 15px;
+}
+
+textarea {
+  width: 375px;
+  resize: vertical;
+  border-radius: 15px;
+  min-height: 48px;
+}
+
+.input-with-text,
+.postfix-container,
+.input-container,
+.input-row,
+.add-button,
+.delete-button {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.input-text {
+  margin-right: 10px;
+}
+
+.postfix {
+  margin-left: 5px;
+}
+
+.custom-selector {
+  background-color: #fff;
+  color: #333;
+  border-radius: 15px;
+}
+
+.input-row .delete-button {
+  background-color: #fff;
+  color: #ff914d;
+  border: 1px solid #ff914d;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.input-row input {
+  width: 340px;
+  height: 50px;
+  margin-right: 10px;
+  border-radius: 15px;
+}
+
+.add-button,
+.delete-button {
+  background-color: #fff;
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 200px;
+  height: 38px;
+  width: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-button:hover,
+.delete-button:hover {
+  background-color: #ff6340;
+}
+
+.required-text {
+  font-size: 14px;
+  color: #ff914d;
+  margin-top: 10px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.orange-button {
+  background-color: #ff914d;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.orange-button:hover {
+  background-color: #ff6340;
+}
+
+.small-text {
+  font-size: 12px;
+  color: #8d8686;
+  margin-top: 10px;
+}
+
+.input-with-addon {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.input-with-addon input {
+  width: calc(100% - 60px);
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.input-with-addon .addon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #ddd;
+  padding: 11.2px;
+  border-radius: 0 15px 15px 0;
+  margin-right: 20px;
+  width: 70px;
+  text-align: center;
+}
+
+/* Estilos para los botones de aÃ±adir */
+.add-button {
+  background-color: #fff;
+  color: #ff914d;
+  border: 1px solid #ff914d;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.error-message {
+  text-align: justify;
+  color: red;
+}
