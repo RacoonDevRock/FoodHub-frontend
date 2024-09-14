@@ -1,14 +1,11 @@
-<main>
+<main class="flex items-center justify-center bg-gray-100" style="height: 74vh">
+  <div class="p-8 text-center">
+    <h2 class="mb-8 text-lg font-bold" style="color: #ee8326">Mis Recetas</h2>
+    <p>Total de recetas publicadas:</p>
+    <p>{{ cantidadRecetas }} receta(s)</p>
 
-  <div class="main-container">
-    <div class="container">
-      <h2>Mis Recetas</h2>
-      <p>Total de recetas publicadas: </p>
-      <p>{{ cantidadRecetas }} receta(s)</p>
-
-      <button [routerLink]="['/ingresar/crearReceta']" class="crear-receta-btn">Crear Nueva Receta</button>
-
-    </div>
+    <button [routerLink]="['/ingresar/crearReceta']" class="crear-receta-btn bg-orange-500 text-white py-2 px-4 rounded-lg mt-8">
+      Crear Nueva Receta
+    </button>
   </div>
-
 </main>

@@ -1,63 +1,60 @@
-<main>
+<main class="bg-gray-100 h-[74vh] flex items-center justify-center">
+  <div class="bg-white p-8 shadow-lg w-full max-w-6xl">
+    <h2 class="text-xl font-bold text-center text-[#ee8326] mb-4">Datos de Mi Perfil</h2>
 
-  <div class="card-container">
-    <div class="card">
-
-      <h2>Datos de Mi Perfil</h2>
-
-      <div class="card-content">
-        <div class="column-left">
-          <div class="profile-image-container">
-            <img [src]="preview" alt="Foto de perfil" class="preview" id="profileImage">
-          </div>
-          <p>Creador</p>
-          <input type="file" id="fileInput" accept="image/*" style="display: none;">
+    <div class="flex">
+      <!-- Columna izquierda (1/4 parte) -->
+      <div class="w-1/4 flex flex-col items-center justify-center mt-[-35px]">
+        <div class="w-36 h-36 rounded-full overflow-hidden mb-4">
+          <img [src]="preview" alt="Foto de perfil" class="w-full h-full object-cover" id="profileImage">
         </div>
+        <p class="font-bold mb-6">Creador</p>
+        <input type="file" id="fileInput" accept="image/*" class="hidden">
+      </div>
 
-        <div class="column-right">
-          <h3>Información Personal</h3>
+      <!-- Columna derecha (3/4 partes) -->
+      <div class="w-3/4 text-justify ml-10">
+        <h3 class="text-lg font-bold text-[#ee8326] mb-4">Información Personal</h3>
 
-          <div>
-            <div class="row">
-              <div>
-                <label for="nombre">Nombre: </label>
-                <input type="text" id="nombre" readonly [value]="creadorDTO.nombre">
-              </div>
-              <div style="margin-left: 30px;">
-                <label for="codigo">Codigo de Colegiado: </label>
-                <input type="text" id="codigo" readonly [value]="creadorDTO.codigoColegiatura">
-              </div>
-              <div class="row">
-                <div>
-                  <label for="apellido-paterno">Apellido Paterno: </label>
-                  <input type="text" id="apellido-paterno" readonly [value]="creadorDTO.apellidoPaterno">
-                </div>
-                <div >
-                  <label for="apellido-materno">Apellido Materno: </label>
-                  <input type="text" id="apellido-materno" readonly [value]="creadorDTO.apellidoMaterno">
-                </div>
-              </div>
+        <div class="space-y-4">
+          <div class="flex">
+            <div class="w-1/2">
+              <label for="nombre" class="block font-bold text-sm mb-2">Nombre: </label>
+              <input type="text" id="nombre" class="p-2 border border-gray-300 rounded-lg w-full" readonly [value]="creadorDTO.nombre">
+            </div>
+            <div class="w-1/2 ml-8">
+              <label for="codigo" class="block font-bold text-sm mb-2">Código de Colegiado: </label>
+              <input type="text" id="codigo" class="p-2 border border-gray-300 rounded-lg w-full" readonly [value]="creadorDTO.codigoColegiatura">
             </div>
           </div>
 
-          <h3>Información de Cuenta</h3>
+          <div class="flex">
+            <div class="w-1/2">
+              <label for="apellido-paterno" class="block font-bold text-sm mb-2">Apellido Paterno: </label>
+              <input type="text" id="apellido-paterno" class="p-2 border border-gray-300 rounded-lg w-full" readonly [value]="creadorDTO.apellidoPaterno">
+            </div>
+            <div class="w-1/2 ml-8">
+              <label for="apellido-materno" class="block font-bold text-sm mb-2">Apellido Materno: </label>
+              <input type="text" id="apellido-materno" class="p-2 border border-gray-300 rounded-lg w-full" readonly [value]="creadorDTO.apellidoMaterno">
+            </div>
+          </div>
+        </div>
 
-          <div>
-            <div class="row">
-              <div>
-                <label class="mr-5" for="email">Correo Electrónico:</label>
-                <input type="email" id="email" readonly [value]="creadorDTO.correoElectronico">
-              </div>
-              <div style="margin-left: 30px;">
-                <label class="mr-5" for="contrasenia">Contraseña: </label>
-                <input type="password" id="contrasenia" readonly [value]="creadorDTO.contrasenia">
-              </div>
+        <h3 class="text-lg font-bold text-[#ee8326] mt-8 mb-4">Información de Cuenta</h3>
+
+        <div class="space-y-4">
+          <div class="flex">
+            <div class="w-1/2">
+              <label for="email" class="block font-bold text-sm mb-2">Correo Electrónico:</label>
+              <input type="email" id="email" class="p-2 border border-gray-300 rounded-lg w-full" readonly [value]="creadorDTO.correoElectronico">
+            </div>
+            <div class="w-1/2 ml-8">
+              <label for="contrasenia" class="block font-bold text-sm mb-2">Contraseña:</label>
+              <input type="password" id="contrasenia" class="p-2 border border-gray-300 rounded-lg w-full" readonly [value]="creadorDTO.contrasenia">
             </div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
-
 </main>

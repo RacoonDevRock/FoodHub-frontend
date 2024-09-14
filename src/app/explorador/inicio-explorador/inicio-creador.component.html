@@ -1,39 +1,45 @@
 <main>
 
-  <div class="first-div">
-    <div class="card">
-      <p class="title">Vivamos sanos, Comamos sano</p>
+  <!-- Primer Div -->
+  <div class="first-div bg-cover bg-center bg-no-repeat h-[510px] flex justify-center items-center" style="background-image: url('/fondo.png');">
+    <div class="card bg-white p-5 text-center shadow-lg">
+      <p class="title font-bold text-lg">Vivamos sanos, Comamos sano</p>
       <p>Descubre las mejores recetas saludables, <br> hechas por nutricionistas</p>
 
-      <a  [routerLink]="['/cocinaTuCuenta']">
-        <button>¡Cocina tu Cuenta!</button>
+      <a [routerLink]="['/cocinaTuCuenta']">
+        <button class="bg-[#ee8326] text-white py-2 px-5 text-lg mt-5 rounded-lg hover:bg-[#c76d21]">¡Cocina tu Cuenta!</button>
       </a>
-
     </div>
   </div>
 
-  <div class="second-div">
-    <div class="column">
-      <p>Si buscas  recetas, forma parte <br> de la comunidad y cuida tu salud.</p>
+  <!-- Segundo Div -->
+  <div class="second-div bg-white flex">
+    <div class="column flex-1 mt-5 mb-5 text-center">
+      <p>Si buscas recetas, forma parte <br> de la comunidad y cuida tu salud.</p>
     </div>
-    <div class="separator"></div>
-    <div class="column">
+
+    <div class="flex justify-center items-center h-[90px]">
+      <div class="separator h-16 w-[1px] bg-gray-300"></div>
+    </div>
+
+    <div class="column flex-1 mt-5 mb-5 text-center">
       <p>Si eres nutricionista, crea recetas <br> y fomenta la alimentación sana.</p>
     </div>
   </div>
 
-  <div class="third-div">
-    <div class="column">
-      <h2>MISIÓN</h2>
-      <p>Inspirar hábitos alimenticios <br> saludables y sostenibles a través <br> de recetas expertas y accesibles.</p>
+  <!-- Tercer Div -->
+  <div class="third-div bg-gray-100 flex">
+    <div class="column flex-1 mt-5 mb-5 text-center">
+      <h2 class="text-[#ee8326] text-lg font-bold mb-4">MISIÓN</h2>
+      <p class="text-black">Inspirar hábitos alimenticios <br> saludables y sostenibles a través <br> de recetas expertas y accesibles.</p>
     </div>
-    <div class="column">
-      <h2>VISIÓN</h2>
-      <p>Crear un mundo donde la comida <br> saludable sea fácil, deliciosa y <br> esté al alcance de todos.</p>
+    <div class="column flex-1 mt-5 mb-5 text-center">
+      <h2 class="text-[#ee8326] text-lg font-bold mb-4">VISIÓN</h2>
+      <p class="text-black">Crear un mundo donde la comida <br> saludable sea fácil, deliciosa y <br> esté al alcance de todos.</p>
     </div>
-    <div class="column">
-      <h2>RESPONSABILIDAD SOCIAL</h2>
-      <p>Promover la sostenibilidad <br> ambiental incentivando práctica <br> ecoamigables y saludables.</p>
+    <div class="column flex-1 mt-5 mb-5 text-center">
+      <h2 class="text-[#ee8326] text-lg font-bold mb-4">RESPONSABILIDAD SOCIAL</h2>
+      <p class="text-black">Promover la sostenibilidad <br> ambiental incentivando prácticas <br> ecoamigables y saludables.</p>
     </div>
   </div>
 
