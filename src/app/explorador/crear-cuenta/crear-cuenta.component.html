@@ -1,45 +1,44 @@
-<main>
+<main class="flex flex-col items-center bg-gray-100">
 
   <div class="formulario-container">
-    <div class="formulario-card">
+    <div class="formulario-card bg-white p-8 mt-10 mb-10 shadow-lg">
 
-      <h2>Regístrate y Sé <br> parte de FoodHub</h2>
-      <h3>Conviértete en Creador</h3>
-      <p>Un creado es un nutricionista, para crear una cuenta <br> debes validar tu código de colegiado.</p>
+      <h2 class="mb-4 font-bold text-lg text-center text-orange-500">Regístrate y Sé <br> parte de FoodHub</h2>
+      <h3 class="mb-2 font-bold text-center text-orange-500">Conviértete en Creador</h3>
+      <p class="mb-4 text-sm text-center">Un creador es un nutricionista, para crear una cuenta <br> debes validar tu código de colegiado.</p>
 
-      <form (ngSubmit)="registrarCreador()">
+      <form (ngSubmit)="registrarCreador()" class="flex flex-col">
 
-        <label for="nombre" [class.error]="errorNombre">Nombres: *</label>
-        <input type="text" placeholder="Ingrese sus Nombres *" id="nombre" required name="nombre" [(ngModel)]="creadorDTO.nombre">
+        <label for="nombre" class="mb-2 text-sm font-bold" [class.error]="errorNombre">Nombres: *</label>
+        <input type="text" placeholder="Ingrese sus Nombres *" id="nombre" required name="nombre" [(ngModel)]="creadorDTO.nombre" class="p-2 mb-4 border border-gray-300 rounded-xl">
 
-        <label for="apellidoPaterno" [class.error]="errorRegistro">Apellido Paterno: *</label>
-        <input type="text" placeholder="Ingrese Apellido Paterno *" id="apellidoPaterno" required name="apellidoPaterno" [(ngModel)]="creadorDTO.apellidoPaterno">
+        <label for="apellidoPaterno" class="mb-2 text-sm font-bold" [class.error]="errorRegistro">Apellido Paterno: *</label>
+        <input type="text" placeholder="Ingrese Apellido Paterno *" id="apellidoPaterno" required name="apellidoPaterno" [(ngModel)]="creadorDTO.apellidoPaterno" class="p-2 mb-4 border border-gray-300 rounded-xl">
 
-        <label for="apellidoMaterno" [class.error]="errorRegistro">Apellido Materno: *</label>
-        <input type="text" placeholder="Ingrese Apellido Materno *" id="apellidoMaterno" required name="apellidoMaterno" [(ngModel)]="creadorDTO.apellidoMaterno">
+        <label for="apellidoMaterno" class="mb-2 text-sm font-bold" [class.error]="errorRegistro">Apellido Materno: *</label>
+        <input type="text" placeholder="Ingrese Apellido Materno *" id="apellidoMaterno" required name="apellidoMaterno" [(ngModel)]="creadorDTO.apellidoMaterno" class="p-2 mb-4 border border-gray-300 rounded-xl">
 
-        <label for="correoElectronico" [class.error]="errorCorreo">Correo Electrónico: *</label>
-        <input type="email" placeholder="Ingrese Correo Electrónico *" id="correoElectronico" required name="correoElectronico" [(ngModel)]="creadorDTO.correoElectronico">
+        <label for="correoElectronico" class="mb-2 text-sm font-bold" [class.error]="errorCorreo">Correo Electrónico: *</label>
+        <input type="email" placeholder="Ingrese Correo Electrónico *" id="correoElectronico" required name="correoElectronico" [(ngModel)]="creadorDTO.correoElectronico" class="p-2 mb-4 border border-gray-300 rounded-xl">
 
-        <label for="contrasenia" [class.error]="errorRegistro || errorContrasenia">Contraseña: *</label>
-        <input type="password" placeholder="********" id="contrasenia" required name="contrasenia" [(ngModel)]="creadorDTO.contrasenia">
+        <label for="contrasenia" class="mb-2 text-sm font-bold" [class.error]="errorRegistro || errorContrasenia">Contraseña: *</label>
+        <input type="password" placeholder="********" id="contrasenia" required name="contrasenia" [(ngModel)]="creadorDTO.contrasenia" class="p-2 mb-4 border border-gray-300 rounded-xl">
 
-        <label for="codigoColegiatura" [class.error]="errorCodigoColegiatura">Código de Colegiado: *</label>
-        <input type="text" placeholder="012345" maxlength="6" id="codigoColegiatura" required name="codigoColegiatura" [(ngModel)]="creadorDTO.codigoColegiatura">
+        <label for="codigoColegiatura" class="mb-2 text-sm font-bold" [class.error]="errorCodigoColegiatura">Código de Colegiado: *</label>
+        <input type="text" placeholder="012345" maxlength="6" id="codigoColegiatura" required name="codigoColegiatura" [(ngModel)]="creadorDTO.codigoColegiatura" class="p-2 mb-4 border border-gray-300 rounded-xl">
 
-        <button type="submit" [disabled]="cargando">
+        <button type="submit" [disabled]="cargando" class="bg-orange-500 text-white py-2 rounded-lg mt-2">
           @if (!cargando) {
             <span>Crear cuenta</span>
-          }
-          @else {
+          } @else {
             <span>Procesando...</span>
           }
         </button>
 
-        <p class="obligatorio-texto">* Todos los campos son obligatorios y deben ser llenados.</p>
+        <p class="obligatorio-texto text-xs text-gray-500 mt-2">* Todos los campos son obligatorios y deben ser llenados.</p>
 
         @if (errorRegistro) {
-          <p class="error-message">{{ mensajeError }}</p>
+          <p class="error-message text-red-500 text-sm mt-2">{{ mensajeError }}</p>
         }
 
       </form>
@@ -49,17 +48,15 @@
     @if (mostrarModalCuentaCreada) {
       <div class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
         <div class="bg-white p-4 rounded-md shadow-lg">
-          <p class="text-2xl font-bold mb-4">!Cuenta creada¡</p>
+          <p class="text-2xl font-bold mb-4">¡Cuenta creada!</p>
           <p>Se ha enviado un mensaje de activación a tu correo electrónico</p>
 
           <button (click)="cerrarModalCuentaCreada()" class="bg-blue-500 text-white px-4 py-2 mt-4 rounded">
             Cerrar
           </button>
-
         </div>
       </div>
     }
   </div>
 
 </main>
-

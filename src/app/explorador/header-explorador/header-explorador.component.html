@@ -1,21 +1,25 @@
-<header>
+<header class="bg-white mb-6 text-green-600">
 
-  <nav>
+  <nav class="flex justify-center items-center">
+
     <div class="nav-words" [routerLinkActive]="['active']">
-      <a (click)="llevarExplorador()" [routerLink]="['/categoria']">
+      <a (click)="llevarExplorador()" [routerLink]="['/categoria']" class="text-green-600 font-bold text-lg mt-5 relative hover:text-green-700 transition duration-300 ease-in-out">
         Explorar Recetas
       </a>
     </div>
-    <div class="logo">
-      <a [routerLink]="['/']">
-        <img src="/logo_FoodHub.png" alt="Logo FoodHub1">
 
+    <div class="logo mx-9 mt-4">
+      <a [routerLink]="['/']">
+        <img src="/logo_FoodHub.png" alt="Logo FoodHub1" class="max-h-20">
       </a>
     </div>
+
     <div class="nav-words" [routerLinkActive]="['active']">
-      <a [routerLink]="['/iniciarSesion']">Iniciar Sesión</a>
+      <a [routerLink]="['/iniciarSesion']" class="text-green-600 font-bold text-lg mt-5 relative hover:text-green-700 transition duration-300 ease-in-out">
+        Iniciar Sesión
+      </a>
     </div>
+
   </nav>
 
 </header>
-

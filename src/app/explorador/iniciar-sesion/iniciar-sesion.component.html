@@ -1,31 +1,35 @@
-<main>
+<main class="flex flex-col items-center bg-gray-100">
 
   <div class="formulario-container">
-    <div class="formulario-card">
+    <div class="formulario-card bg-white p-8 mt-10 mb-10 shadow-lg">
 
-      <h2>Ingresa a la Gran Comunidad <br> Saludable de FoodHub</h2>
-      <p>Ingresa tus datos registrados</p>
+      <h2 class="mb-4 font-bold text-lg text-center text-orange-500">Ingresa a la Gran Comunidad <br> Saludable de FoodHub</h2>
+      <p class="mb-4 text-sm text-center">Ingresa tus datos registrados</p>
 
-      <form>
-        <label for="identificador" >Correo Electrónico o Código de Colegiado: *</label>
-        <input type="text" placeholder="abc@example.com/012345" id="identificador" name="identificador" required >
+      <form class="flex flex-col">
+        <label for="identificador" class="mb-2 text-sm font-bold">Correo Electrónico o Código de Colegiado: *</label>
+        <input type="text" placeholder="abc@example.com/012345" id="identificador" name="identificador" required class="p-2 mb-4 border border-gray-300 rounded-xl">
 
-        <label for="contrasenia" >Contraseña: *</label>
-        <input type="password" placeholder="*********" id="contrasenia" name="contrasenia" required >
+        <label for="contrasenia" class="mb-2 text-sm font-bold">Contraseña: *</label>
+        <input type="password" placeholder="*********" id="contrasenia" name="contrasenia" required class="p-2 mb-4 border border-gray-300 rounded-xl">
 
-        <button  type="submit">Ingresar</button>
+        <button type="submit" class="bg-orange-500 text-white py-2 rounded-lg mt-2">
+          Ingresar
+        </button>
 
-        <p class="obligatorio-texto">* Todos los campos son obligatorios y deben ser llenados.</p>
+        <p class="obligatorio-texto text-xs text-gray-500 mt-2">* Todos los campos son obligatorios y deben ser llenados.</p>
 
         @if (true) {
-          <p class="error-message"></p>
+          <p class="error-message text-red-500 text-sm mt-2"></p>
         }
 
-        <div class="separador"></div>
+        <div class="separador bg-gray-300 h-px my-4"></div>
 
-        <p>Si aún no tienes una cuenta, entonces ¡Crea una!</p>
+        <p class="text-center">Si aún no tienes una cuenta, entonces ¡Crea una!</p>
 
-        <button [routerLink]="['/explorador/cocinaTuCuenta']" class="boton2">¡Cocina tu Cuenta!</button>
+        <button [routerLink]="['/explorador/cocinaTuCuenta']" class="bg-orange-500 text-white py-2 rounded-lg mt-4 w-full">
+          ¡Cocina tu Cuenta!
+        </button>
 
       </form>
 

@@ -1,21 +1,27 @@
-<header>
-  <nav>
-    <div class="nav-words" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" >
-      <a (click)="llevarCreador()" [routerLink]="['/categoria']">Explorar Recetas</a>
-    </div>
+<header class="bg-white text-[#64b43e] mb-6">
+  <nav class="flex justify-center items-center">
 
-    <div class="logo">
-      <img src="/logo_FoodHub.png" alt="Logo FoodHub" />
-    </div>
-
-    <div class="nav-words" [routerLinkActive]="['active']"  [routerLinkActiveOptions]="{ exact: true }" >
-      <a [routerLink]="['/ingresar/gestionDeRecetas']">Mis Recetas</a>
-    </div>
-
-    <div class="nav-words perfil-section">
-      <a [routerLink]="['/ingresar/miPerfil']">
-        <img src="/icono_perfil.png" alt="Perfil" />
+    <div class="flex items-center relative" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+      <a (click)="llevarCreador()" [routerLink]="['/categoria']" class="text-[#64b43e] font-bold text-lg hover:text-[#407d2e] mt-5 relative">
+        Explorar Recetas
       </a>
     </div>
+
+    <div class="mx-9 mt-4">
+      <img src="/logo_FoodHub.png" alt="Logo FoodHub" class="max-h-20" />
+    </div>
+
+    <div class="flex items-center relative" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+      <a [routerLink]="['/ingresar/gestionDeRecetas']" class="text-[#64b43e] font-bold text-lg hover:text-[#407d2e] mt-5 relative">
+        Mis Recetas
+      </a>
+    </div>
+
+    <div class="absolute right-2 flex items-center">
+      <a [routerLink]="['/ingresar/miPerfil']">
+        <img src="/icono_perfil.png" alt="Perfil" class="w-12 h-12 mr-5" />
+      </a>
+    </div>
+
   </nav>
 </header>
