@@ -18,6 +18,10 @@ export class AuthService {
     return this.http.post<any>(`${this.baseUrl}/registrar`, creadorDTO);
   }
 
+  confirmation(token: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/confirmar?token=${token}`);
+  }
+
   iniciarSesionCreador(authDTO: AuthDTO): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/login`, authDTO);
   }

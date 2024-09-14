@@ -108,7 +108,12 @@ export const routes: Routes = [
     ]
   },
   {
+    path: 'verificar/:token',
+    loadComponent: () => import('./creador/verify-account/verify-account.component'),
+  },
+  {
     path: '**',
-    redirectTo: '/explorador'
+    redirectTo: '/explorador',
+    pathMatch: 'full'
   }
 ];

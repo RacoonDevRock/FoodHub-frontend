@@ -11,6 +11,7 @@ import {SideCategoriasComponent} from "../side-categorias/side-categorias.compon
   selector: 'app-deficit',
   standalone: true,
   imports: [
+    CommonModule,
     NgxPaginationModule,
     SideCategoriasComponent
   ],

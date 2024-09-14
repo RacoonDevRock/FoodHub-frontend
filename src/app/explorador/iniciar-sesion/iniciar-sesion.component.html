@@ -6,12 +6,12 @@
       <h2>Ingresa a la Gran Comunidad <br> Saludable de FoodHub</h2>
       <p>Ingresa tus datos registrados</p>
 
-      <form>
+      <form (ngSubmit)="iniciarSesion()">
         <label for="identificador" >Correo Electrónico o Código de Colegiado: *</label>
-        <input type="text" placeholder="abc@example.com/012345" id="identificador" name="identificador" required >
+        <input type="text" placeholder="abc@example.com/012345" [(ngModel)]="authDTO.identificador" name="identificador" required >
 
         <label for="contrasenia" >Contraseña: *</label>
-        <input type="password" placeholder="*********" id="contrasenia" name="contrasenia" required >
+        <input type="password" placeholder="*********" [(ngModel)]="authDTO.contrasenia" name="contrasenia" required >
 
         <button  type="submit">Ingresar</button>
 
@@ -25,7 +25,7 @@
 
         <p>Si aún no tienes una cuenta, entonces ¡Crea una!</p>
 
-        <button [routerLink]="['/explorador/cocinaTuCuenta']" class="boton2">¡Cocina tu Cuenta!</button>
+        <button [routerLink]="['/cocinaTuCuenta']" class="boton2">¡Cocina tu Cuenta!</button>
 
       </form>
 

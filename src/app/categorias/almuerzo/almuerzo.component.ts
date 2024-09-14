@@ -11,6 +11,7 @@ import {SideCategoriasComponent} from "../side-categorias/side-categorias.compon
   selector: 'app-almuerzo',
   standalone: true,
   imports: [
+    CommonModule,
     SideCategoriasComponent,
     NgxPaginationModule
   ],

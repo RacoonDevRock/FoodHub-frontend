@@ -11,6 +11,7 @@ import {SideCategoriasComponent} from "../side-categorias/side-categorias.compon
   selector: 'app-postres',
   standalone: true,
   imports: [
+    CommonModule,
     NgxPaginationModule,
     SideCategoriasComponent
   ],

@@ -1,18 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthDTO} from "../../interfaces/AuthDTO";
-import {Router, RouterLink} from '@angular/router';
+import { AuthDTO } from '../../interfaces/AuthDTO';
+import { Router, RouterLink } from '@angular/router';
 import { SharedService } from '../../services/shared.service';
-import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-iniciar-sesion',
   standalone: true,
-  imports: [
-    RouterLink
-  ],
+  imports: [RouterLink, FormsModule],
   templateUrl: './iniciar-sesion.component.html',
-  styleUrl: './iniciar-sesion.component.css'
+  styleUrl: './iniciar-sesion.component.css',
 })
 export class IniciarSesionComponent implements OnInit {
   public tipo: string = '';
@@ -39,6 +37,7 @@ export class IniciarSesionComponent implements OnInit {
 
   iniciarSesion(): void {
     this.resetErrores();
+    localStorage.removeItem('token');
 
     if (!this.authDTO.identificador || !this.authDTO.contrasenia) {
       this.errorRegistro = true;
@@ -48,6 +47,7 @@ export class IniciarSesionComponent implements OnInit {
 
     this.authService.iniciarSesionCreador(this.authDTO).subscribe(
       (response) => {
+        console.log('token', response)
         this.tipo = 'creador';
         this.sharedService.setTipo(this.tipo);
         localStorage.setItem('token', response.token);
