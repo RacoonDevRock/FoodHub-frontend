@@ -16,7 +16,7 @@ import { environment } from '../../../environments/environment.development';
   styleUrl: './superavit.component.css',
 })
 export class SuperavitComponent implements OnInit {
-  public urlImages: string = `${environment.apiUrl}/imagen_recetas/`;
+  public urlImages: string = `${environment.apiUrl}/imagenes/`;
 
   public page!: number;
   public recipes: RecetaCategoriaDTO[] = [];

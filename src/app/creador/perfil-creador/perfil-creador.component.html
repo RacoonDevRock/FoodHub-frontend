@@ -1,56 +1,122 @@
 <main class="bg-gray-100 h-[74vh] flex items-center justify-center">
   <div class="bg-white p-8 shadow-lg w-full max-w-6xl">
-    <h2 class="text-xl font-bold text-center text-[#ee8326] mb-4">Datos de Mi Perfil</h2>
+    <h2 class="text-xl font-bold text-center text-[#ee8326] mb-4">
+      Datos de Mi Perfil
+    </h2>
 
     <div class="flex">
       <!-- Columna izquierda (1/4 parte) -->
       <div class="w-1/4 flex flex-col items-center justify-center mt-[-35px]">
         <div class="w-36 h-36 rounded-full overflow-hidden mb-4">
-          <img [src]="preview" alt="Foto de perfil" class="w-full h-full object-cover" id="profileImage">
+          <img
+            [src]="urlImages + creadorDTO.fotoPerfil"
+            alt="Foto de perfil"
+            class="w-full h-full object-cover"
+            id="profileImage"
+          />
         </div>
         <p class="font-bold mb-6">Creador</p>
-        <input type="file" id="fileInput" accept="image/*" class="hidden">
+        <input
+          (change)="onFileSelected($event)"
+          class="input-image"
+          [class.error]="errorRegistro"
+          type="file"
+          accept="image/*"
+          required
+        />
+        <input type="file" id="fileInput" accept="image/*" class="hidden" />
       </div>
 
       <!-- Columna derecha (3/4 partes) -->
       <div class="w-3/4 text-justify ml-10">
-        <h3 class="text-lg font-bold text-[#ee8326] mb-4">Información Personal</h3>
+        <h3 class="text-lg font-bold text-[#ee8326] mb-4">
+          Información Personal
+        </h3>
 
         <div class="space-y-4">
           <div class="flex">
             <div class="w-1/2">
-              <label for="nombre" class="block font-bold text-sm mb-2">Nombre: </label>
-              <input type="text" id="nombre" class="p-2 border border-gray-300 rounded-lg w-full" readonly [value]="creadorDTO.nombre">
+              <label for="nombre" class="block font-bold text-sm mb-2"
+                >Nombre:
+              </label>
+              <input
+                type="text"
+                id="nombre"
+                class="p-2 border border-gray-300 rounded-lg w-full"
+                readonly
+                [value]="creadorDTO.nombre"
+              />
             </div>
             <div class="w-1/2 ml-8">
-              <label for="codigo" class="block font-bold text-sm mb-2">Código de Colegiado: </label>
-              <input type="text" id="codigo" class="p-2 border border-gray-300 rounded-lg w-full" readonly [value]="creadorDTO.codigoColegiatura">
+              <label for="codigo" class="block font-bold text-sm mb-2"
+                >Código de Colegiado:
+              </label>
+              <input
+                type="text"
+                id="codigo"
+                class="p-2 border border-gray-300 rounded-lg w-full"
+                readonly
+                [value]="creadorDTO.codigoColegiatura"
+              />
             </div>
           </div>
 
           <div class="flex">
             <div class="w-1/2">
-              <label for="apellido-paterno" class="block font-bold text-sm mb-2">Apellido Paterno: </label>
-              <input type="text" id="apellido-paterno" class="p-2 border border-gray-300 rounded-lg w-full" readonly [value]="creadorDTO.apellidoPaterno">
+              <label for="apellido-paterno" class="block font-bold text-sm mb-2"
+                >Apellido Paterno:
+              </label>
+              <input
+                type="text"
+                id="apellido-paterno"
+                class="p-2 border border-gray-300 rounded-lg w-full"
+                readonly
+                [value]="creadorDTO.apellidoPaterno"
+              />
             </div>
             <div class="w-1/2 ml-8">
-              <label for="apellido-materno" class="block font-bold text-sm mb-2">Apellido Materno: </label>
-              <input type="text" id="apellido-materno" class="p-2 border border-gray-300 rounded-lg w-full" readonly [value]="creadorDTO.apellidoMaterno">
+              <label for="apellido-materno" class="block font-bold text-sm mb-2"
+                >Apellido Materno:
+              </label>
+              <input
+                type="text"
+                id="apellido-materno"
+                class="p-2 border border-gray-300 rounded-lg w-full"
+                readonly
+                [value]="creadorDTO.apellidoMaterno"
+              />
             </div>
           </div>
         </div>
 
-        <h3 class="text-lg font-bold text-[#ee8326] mt-8 mb-4">Información de Cuenta</h3>
+        <h3 class="text-lg font-bold text-[#ee8326] mt-8 mb-4">
+          Información de Cuenta
+        </h3>
 
         <div class="space-y-4">
           <div class="flex">
             <div class="w-1/2">
-              <label for="email" class="block font-bold text-sm mb-2">Correo Electrónico:</label>
-              <input type="email" id="email" class="p-2 border border-gray-300 rounded-lg w-full" readonly [value]="creadorDTO.correoElectronico">
+              <label for="email" class="block font-bold text-sm mb-2"
+                >Correo Electrónico:</label
+              >
+              <input
+                type="email"
+                id="email"
+                class="p-2 border border-gray-300 rounded-lg w-full"
+                readonly
+                [value]="creadorDTO.correoElectronico"
+              />
             </div>
             <div class="w-1/2 ml-8">
-              <label for="contrasenia" class="block font-bold text-sm mb-2">Contraseña:</label>
-              <input type="password" id="contrasenia" class="p-2 border border-gray-300 rounded-lg w-full" readonly [value]="creadorDTO.contrasenia">
+              <label for="contrasenia" class="block font-bold text-sm mb-2"
+                >Contraseña:</label
+              >
+              <input
+                type="password"
+                id="contrasenia"
+                class="p-2 border border-gray-300 rounded-lg w-full"
+                readonly
+              />
             </div>
           </div>
         </div>

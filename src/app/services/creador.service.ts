@@ -18,4 +18,8 @@ export class CreadorService {
   verPerfil(): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/perfil`);
   }
+
+  actualizarFotoPerfil(formData: FormData): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/actualizarFotoPerfil`, formData);
+  }
 }

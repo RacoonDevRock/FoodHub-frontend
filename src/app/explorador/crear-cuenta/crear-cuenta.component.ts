@@ -126,6 +126,17 @@ export class CrearCuentaComponent {
   cerrarModalCuentaCreada(): void {
     this.mostrarModalCuentaCreada = false;
     this.router.navigate(['/login']);
+    this.resetCampos();
+
+  }
+
+  resetCampos(){
+    this.creadorDTO.nombre = "";
+    this.creadorDTO.apellidoMaterno = "";
+    this.creadorDTO.apellidoPaterno = "";
+    this.creadorDTO.correoElectronico = "";
+    this.creadorDTO.contrasenia = "";
+    this.creadorDTO.codigoColegiatura = "";
   }
 
   resetErrores(): void {
@@ -144,6 +155,8 @@ export class CrearCuentaComponent {
     this.mensajeErrorCorreo = '';
     this.mensajeErrorContrasenia = '';
     this.mensajeErrorCodigoColegiatura = '';
+
+
   }
 
   validarCorreo(correo: string): boolean {

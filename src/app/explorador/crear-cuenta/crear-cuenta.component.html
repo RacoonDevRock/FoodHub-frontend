@@ -1,16 +1,19 @@
-<main class="flex flex-col items-center" style="background: #f6f8e8">
+<main class="flex flex-col items-center">
   <div class="formulario-container lg:py-20 py-10 flex flex-col items-center justify-center">
 
-    <h2 class="mb-3 text-2xl text-center -mt-5">Regístrate y Sé parte de FoodHub</h2>
+    <h2 class="mb-5 lg:text-2xl text-xl lg:font-normal font-semibold text-center -mt-5">Regístrate y Sé parte de FoodHub</h2>
 
-    <div class="formulario-card bg-white px-10 py-6 shadow-lg lg:w-[50vh] w-[40vh]">
+    <div class="formulario-card bg-white px-10 py-6 shadow-lg lg:w-[500px] w-[350px]">
 
-      <div class="items-center text-center justify-center">
-        <h3 class="mb-2 text-center text-2xl border-b-4 border-orange-500 inline-block pb-1 mx-auto">Conviértete en Creador</h3>
+
+    <div class="items-center text-center justify-center">
+        <h3 class="mb-4 text-center lg:text-2xl text-xl border-b-4 border-orange-500 inline-block pb-1 mx-auto">Conviértete en Creador</h3>
       </div>
 
 
-      <p class="mb-4 text-sm text-start">Un creador es un nutricionista, para crear una cuenta debes  <br> validar tu código de colegiado.</p>
+      <p class="mb-4 text-sm hidden lg:block text-start">Un creador es un nutricionista, para crear una cuenta debes  <br> validar tu código de colegiado.</p>
+
+      <p class="mb-4 text-sm lg:hidden text-start">Un creador es un nutricionista, para crear una cuenta debes  validar tu código de colegiado.</p>
 
       <form (ngSubmit)="registrarCreador()" class="flex flex-col">
 

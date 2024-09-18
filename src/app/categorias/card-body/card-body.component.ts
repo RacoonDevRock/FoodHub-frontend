@@ -13,7 +13,7 @@ import { environment } from '../../../environments/environment.development';
   styleUrl: './card-body.component.css',
 })
 export class CardBodyComponent implements OnInit {
-  public urlImages: string = `${environment.apiUrl}/imagen_recetas/`;
+  public urlImages: string = `${environment.apiUrl}/imagenes/`;
   public recetaDTO!: RecetaDTO;
 
   constructor(
