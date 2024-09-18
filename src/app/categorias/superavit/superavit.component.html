@@ -1,34 +1,30 @@
-<main>
-  <div class="container">
+<div class="flex flex-col min-h-full"> <!-- Ajuste en la estructura principal -->
+  <!-- Contenedor de recetas -->
+  <div class="flex flex-wrap justify-start ml-7 flex-grow"> <!-- flex-grow aplicado aquí -->
+    <div
+      *ngFor="let recipe of recipes | paginate: { itemsPerPage: 6, currentPage: page }"
+      class="card w-[calc(32%-20px)] h-[275px] shadow-lg transition-transform duration-300 ease-in-out mt-10 mr-5 ml-2 flex flex-col bg-white hover:scale-105"
+      (click)="verContenido(recipe)"
+    >
+      <img
+        [src]="urlImages + recipe.imagenReceta"
+        [alt]="recipe.titulo"
+        class="w-full h-[140px] object-cover"
+      />
 
-    <div class="column-left">
-      <app-side-categorias />
-    </div>
-
-    <div class="column-right">
-      <div
-        *ngFor="
-          let recipe of recipes
-            | paginate : { itemsPerPage: 6, currentPage: page }
-        "
-        class="card"
-        (click)="verContenido(recipe)"
-      >
-        <img [src]="urlImages + recipe.imagenReceta" [alt]="recipe.titulo" />
-
-        <div class="card-content">
-          <h3>{{ recipe.titulo }}</h3>
-          <p>{{ recipe.descripcion }}</p>
-        </div>
+      <div class="p-4">
+        <h3 class="m-0 text-lg font-bold">{{ recipe.titulo }}</h3>
+        <p class="my-2 text-justify text-sm">{{ recipe.descripcion }}</p>
       </div>
     </div>
   </div>
 
-  <div class="pagination">
+  <!-- Paginación en la parte inferior -->
+  <div class="pagination py-2 text-center mt-auto"> <!-- mt-auto para que quede al fondo -->
     <pagination-controls
       (pageChange)="page = $event"
       previousLabel="Anterior"
       nextLabel="Siguiente"
     ></pagination-controls>
   </div>
-</main>
+</div>

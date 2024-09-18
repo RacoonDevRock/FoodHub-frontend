@@ -1,9 +1,23 @@
-@if (header == 2) {
-  <app-header-creador />
-}
-@else if (header == 1) {
-  <app-header-explorador />
-}
 
-<router-outlet />
+  <div class="flex-grow">
+    @if (header == 2) {
+      <app-header-creador />
+    }
+    @else if (header == 1) {
+      <app-header-explorador />
+    }
+
+    <div class="flex min-h-screen">
+
+      <div class="w-[15%] bg-black pt-5">
+          <app-side-categorias />
+      </div>
+
+      <div class="w-[85%]">
+        <router-outlet />
+      </div>
+
+    </div>
+
+  </div>
 

@@ -1,13 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {RouterLink, RouterLinkActive} from "@angular/router";
+import {Router, RouterLink, RouterLinkActive} from "@angular/router";
 import {SharedService} from "../../services/shared.service";
+import {NgClass} from "@angular/common";
 
 @Component({
   selector: 'app-header-creador',
   standalone: true,
   imports: [
+    RouterLink,
     RouterLinkActive,
-    RouterLink
+    NgClass
   ],
   templateUrl: './header-creador.component.html',
   styleUrl: './header-creador.component.css'
@@ -16,7 +18,7 @@ export class HeaderCreadorComponent implements OnInit{
 
   public tipo: string = '';
 
-  constructor(private sharedService: SharedService) {}
+  constructor(private sharedService: SharedService, private router: Router) {}
 
   ngOnInit() {
     this.tipo = 'vacio';
@@ -29,5 +31,9 @@ export class HeaderCreadorComponent implements OnInit{
     this.sharedService.setTipo(this.tipo);
     console.log('tipo explorador: ', this.tipo);
   }
+  isActive(route: string): boolean {
+    return this.router.url === route;
+  }
+
 
 }

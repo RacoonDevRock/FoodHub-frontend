@@ -1,4 +1,4 @@
-<main class="bg-gray-100 h-[74vh] flex items-center justify-center">
+<main class="py-36 flex items-center justify-center">
   <div class="bg-white p-8 shadow-lg w-full max-w-6xl">
     <h2 class="text-xl font-bold text-center text-[#ee8326] mb-4">
       Datos de Mi Perfil
@@ -6,25 +6,30 @@
 
     <div class="flex">
       <!-- Columna izquierda (1/4 parte) -->
-      <div class="w-1/4 flex flex-col items-center justify-center mt-[-35px]">
-        <div class="w-36 h-36 rounded-full overflow-hidden mb-4">
+      <div class="w-1/4 flex flex-col items-center justify-center mt-[-35px] relative">
+        <!-- Imagen que actúa como botón para seleccionar archivo -->
+        <label for="fileInput" class="w-36 h-36 rounded-full overflow-hidden mb-4 cursor-pointer relative">
+          <!-- Imagen de perfil con efecto hover -->
           <img
-            [src]="urlImages + creadorDTO.fotoPerfil"
+            [src]="creadorDTO.fotoPerfil ? (urlImages + creadorDTO.fotoPerfil) : '/default-profile-image.jpg'"
             alt="Foto de perfil"
-            class="w-full h-full object-cover"
-            id="profileImage"
+            class="w-full h-full object-cover transition duration-300 ease-in-out"
           />
-        </div>
+          <!-- Efecto hover -->
+          <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out">
+            <span class="text-white text-3xl font-bold">+</span>
+          </div>
+        </label>
         <p class="font-bold mb-6">Creador</p>
+        <!-- Input de archivo oculto -->
         <input
           (change)="onFileSelected($event)"
-          class="input-image"
-          [class.error]="errorRegistro"
+          id="fileInput"
+          class="hidden"
           type="file"
           accept="image/*"
           required
         />
-        <input type="file" id="fileInput" accept="image/*" class="hidden" />
       </div>
 
       <!-- Columna derecha (3/4 partes) -->

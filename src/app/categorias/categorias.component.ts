@@ -3,6 +3,8 @@ import {HeaderExploradorComponent} from "../explorador/header-explorador/header-
 import {HeaderCreadorComponent} from "../creador/header-creador/header-creador.component";
 import { SharedService } from '../services/shared.service';
 import {RouterOutlet} from "@angular/router";
+import {FooterComponent} from "../footer/footer.component";
+import {SideCategoriasComponent} from "./side-categorias/side-categorias.component";
 
 @Component({
   selector: 'app-categorias',
@@ -10,7 +12,9 @@ import {RouterOutlet} from "@angular/router";
   imports: [
     HeaderExploradorComponent,
     HeaderCreadorComponent,
-    RouterOutlet
+    RouterOutlet,
+    FooterComponent,
+    SideCategoriasComponent
   ],
   templateUrl: './categorias.component.html',
   styleUrl: './categorias.component.css'

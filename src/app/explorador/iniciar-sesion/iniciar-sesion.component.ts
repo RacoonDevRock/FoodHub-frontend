@@ -23,6 +23,8 @@ export class IniciarSesionComponent implements OnInit {
   errorIdentificador: boolean = false;
   errorContrasenia: boolean = false;
   mensajeError: string = '';
+  mensajeErrorIdentificador: string = '';
+  mensajeErrorContrasenia: string = '';
 
   constructor(
     private authService: AuthService,
@@ -39,10 +41,20 @@ export class IniciarSesionComponent implements OnInit {
     this.resetErrores();
     localStorage.removeItem('token');
 
-    if (!this.authDTO.identificador || !this.authDTO.contrasenia) {
-      this.errorRegistro = true;
-      this.mensajeError = 'Complete todos los campos obligatorios.';
-      return;
+    if (!this.authDTO.identificador) {
+      this.errorIdentificador = true;
+      this.mensajeErrorIdentificador = 'El campo de correo o código de colegiado es obligatorio.*';
+    }else if (this.authDTO.identificador.length!=6 && !this.validarCorreo(this.authDTO.identificador)) {
+      this.errorIdentificador = true;
+      this.mensajeErrorIdentificador = 'El formato del correo electrónico es incorrecto.*';
+    }else if(this.authDTO.identificador.length==6 && !this.validarCodigoColegiatura(this.authDTO.identificador)) {
+      this.errorIdentificador = true;
+      this.mensajeErrorIdentificador = 'Ingrese un código de colegiatura válido.*';
+    }
+
+    if (!this.authDTO.contrasenia) {
+      this.errorContrasenia = true;
+      this.mensajeErrorContrasenia = 'El campo de contraseña es obligatorio.*';
     }
 
     this.authService.iniciarSesionCreador(this.authDTO).subscribe(
@@ -56,7 +68,10 @@ export class IniciarSesionComponent implements OnInit {
       (error) => {
         console.error('Error al iniciar sesión:', error);
         this.errorRegistro = true;
-        this.mensajeError = 'Error al iniciar sesión. Inténtalo de nuevo';
+        if(!this.errorIdentificador&&!this.errorContrasenia){
+          this.mensajeError = 'Error al iniciar sesión. Inténtalo de nuevo';
+
+        }
       }
     );
   }
@@ -66,5 +81,17 @@ export class IniciarSesionComponent implements OnInit {
     this.errorIdentificador = false;
     this.errorContrasenia = false;
     this.mensajeError = '';
+    this.mensajeErrorIdentificador = '';
+    this.mensajeErrorContrasenia = '';
+  }
+
+  validarCorreo(correo: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(correo);
+  }
+
+  validarCodigoColegiatura(codigo: string): boolean {
+    const codigoRegex = /^[0-9]{6}$/;
+    return codigoRegex.test(codigo);
   }
 }

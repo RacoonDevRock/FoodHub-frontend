@@ -125,7 +125,7 @@ export class CrearCuentaComponent {
 
   cerrarModalCuentaCreada(): void {
     this.mostrarModalCuentaCreada = false;
-    this.router.navigate(['/login']);
+    this.router.navigate(['/iniciarSesion']);
     this.resetCampos();
 
   }

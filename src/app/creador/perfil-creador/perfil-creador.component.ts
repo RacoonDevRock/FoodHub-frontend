@@ -20,7 +20,7 @@ export class PerfilCreadorComponent implements OnInit {
     codigoColegiatura: '',
     fotoPerfil: '',
   };
-  
+
   defaultImage: string = '/default-profile-image.jpg';
   preview: string | ArrayBuffer | null = this.defaultImage;
   selectedFile: File | null = null;

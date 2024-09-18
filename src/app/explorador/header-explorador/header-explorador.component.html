@@ -1,10 +1,17 @@
-<header class="bg-white mb-6 text-green-600">
-
-  <nav class="flex justify-center items-center">
-
-    <div class="nav-words" [routerLinkActive]="['active']">
-      <a (click)="llevarExplorador()" [routerLink]="['/categoria']" class="text-green-600 font-bold text-lg mt-5 relative hover:text-green-700 transition duration-300 ease-in-out">
+<header class="bg-white h-28">
+  <nav class="flex justify-center items-center space-x-24">
+    <div class="nav-words">
+      <a
+        (click)="llevarExplorador()"
+        [routerLink]="['/categoria']"
+        [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="{exact: true}"
+        class="font-bold text-2xl mt-5 relative text-[#64b43e] hover:text-[#407d2e] transition duration-300 ease-in-out"
+      >
         Explorar Recetas
+        <span class="block absolute bottom-[-20px] left-[-10%] w-[120%] h-1 bg-[#ee8326] transition-transform transform scale-x-0"
+              [ngClass]="{'scale-x-100': isActive('/categoria')}">
+        </span>
       </a>
     </div>
 
@@ -14,12 +21,18 @@
       </a>
     </div>
 
-    <div class="nav-words" [routerLinkActive]="['active']">
-      <a [routerLink]="['/iniciarSesion']" class="text-green-600 font-bold text-lg mt-5 relative hover:text-green-700 transition duration-300 ease-in-out">
+    <div class="nav-words">
+      <a
+        [routerLink]="['/iniciarSesion']"
+        [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="{exact: true}"
+        class="font-bold text-2xl mt-5 relative text-[#64b43e] hover:text-[#407d2e] transition duration-300 ease-in-out"
+      >
         Iniciar Sesión
+        <span class="block absolute bottom-[-20px] left-[-10%] w-[120%] h-1 bg-[#ee8326] transition-transform transform scale-x-0"
+              [ngClass]="{'scale-x-100': isActive('/iniciarSesion')}">
+        </span>
       </a>
     </div>
-
   </nav>
-
 </header>

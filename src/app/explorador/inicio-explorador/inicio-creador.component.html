@@ -1,20 +1,24 @@
 <main>
 
   <!-- Primer Div -->
-  <div class="first-div bg-cover bg-center bg-no-repeat h-[510px] flex justify-center items-center" style="background-image: url('/fondo.png');">
-    <div class="card bg-white p-5 text-center shadow-lg">
-      <p class="title font-bold text-lg">Vivamos sanos, Comamos sano</p>
+  <div class="first-div bg-cover bg-center bg-no-repeat lg:h-[800px] h-[650px] flex justify-center items-center " style="background-image: url('/fondo.png');">
+
+
+
+    <div class="card bg-white px-12 py-7 text-center shadow-lg">
+      <p class="title font-bold text-2xl mb-3">Vivamos sanos, Comamos sano</p>
       <p>Descubre las mejores recetas saludables, <br> hechas por nutricionistas</p>
 
       <a [routerLink]="['/cocinaTuCuenta']">
-        <button class="bg-[#ee8326] text-white py-2 px-5 text-lg mt-5 rounded-lg hover:bg-[#c76d21]">¡Cocina tu Cuenta!</button>
+        <button class="bg-[#ee8326] hover:bg-[#c76d21] text-white py-2 px-5 text-xl mt-5 rounded-lg ">¡Cocina tu Cuenta!</button>
       </a>
     </div>
+
   </div>
 
   <!-- Segundo Div -->
-  <div class="second-div bg-white flex">
-    <div class="column flex-1 mt-5 mb-5 text-center">
+  <div class="second-div bg-white flex h-32 justify-center items-center ">
+    <div class="column flex-1 mt-5 mb-5 text-center font-semibold">
       <p>Si buscas recetas, forma parte <br> de la comunidad y cuida tu salud.</p>
     </div>
 
@@ -22,24 +26,24 @@
       <div class="separator h-16 w-[1px] bg-gray-300"></div>
     </div>
 
-    <div class="column flex-1 mt-5 mb-5 text-center">
+    <div class="column flex-1 mt-5 mb-5 text-center font-semibold">
       <p>Si eres nutricionista, crea recetas <br> y fomenta la alimentación sana.</p>
     </div>
   </div>
 
   <!-- Tercer Div -->
-  <div class="third-div bg-gray-100 flex">
-    <div class="column flex-1 mt-5 mb-5 text-center">
-      <h2 class="text-[#ee8326] text-lg font-bold mb-4">MISIÓN</h2>
-      <p class="text-black">Inspirar hábitos alimenticios <br> saludables y sostenibles a través <br> de recetas expertas y accesibles.</p>
+  <div class="flex py-14">
+    <div class="flex-1 mt-5 mb-5 text-center -mr-32">
+      <h2 class="text-[#ee8326] text-2xl font-bold mb-4">MISIÓN</h2>
+      <p class="text-black font-semibold">Inspirar hábitos alimenticios <br> saludables y sostenibles a través <br> de recetas expertas y accesibles.</p>
     </div>
-    <div class="column flex-1 mt-5 mb-5 text-center">
-      <h2 class="text-[#ee8326] text-lg font-bold mb-4">VISIÓN</h2>
-      <p class="text-black">Crear un mundo donde la comida <br> saludable sea fácil, deliciosa y <br> esté al alcance de todos.</p>
+    <div class="flex-1 mt-5 mb-5 text-center">
+      <h2 class="text-[#ee8326] text-2xl font-bold mb-4">VISIÓN</h2>
+      <p class="text-black font-semibold">Crear un mundo donde la comida <br> saludable sea fácil, deliciosa y <br> esté al alcance de todos.</p>
     </div>
-    <div class="column flex-1 mt-5 mb-5 text-center">
-      <h2 class="text-[#ee8326] text-lg font-bold mb-4">RESPONSABILIDAD SOCIAL</h2>
-      <p class="text-black">Promover la sostenibilidad <br> ambiental incentivando prácticas <br> ecoamigables y saludables.</p>
+    <div class="flex-1 mt-5 mb-5 text-center -ml-32">
+      <h2 class="text-[#ee8326] text-2xl font-bold mb-4">RESPONSABILIDAD SOCIAL</h2>
+      <p class="text-black font-semibold">Promover la sostenibilidad <br> ambiental incentivando prácticas <br> ecoamigables y saludables.</p>
     </div>
   </div>
 

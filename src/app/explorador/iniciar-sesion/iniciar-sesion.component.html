@@ -1,39 +1,54 @@
-<main class="flex flex-col items-center bg-gray-100">
+<main class="flex flex-col items-center">
 
-  <div class="formulario-container">
-    <div class="formulario-card bg-white p-8 mt-10 mb-10 shadow-lg">
-
-      <h2 class="mb-4 font-bold text-lg text-center text-orange-500">Ingresa a la Gran Comunidad <br> Saludable de FoodHub</h2>
-      <p class="mb-4 text-sm text-center">Ingresa tus datos registrados</p>
+  <div class=" lg:py-20 py-10 flex flex-col items-center justify-center">
+    <h2 class="mb-5 lg:text-2xl text-xl lg:font-normal font-semibold text-center mt-5">Ingresa a la Gran <br> Comunidad Saludable de FoodHub</h2>
+    <div class="bg-white px-10 py-6 shadow-lg lg:w-[500px] w-[350px]">
+      <p class="mb-4 text-xm text-center">Ingresa tus datos registrados</p>
 
       <form class="flex flex-col" (ngSubmit)="iniciarSesion()">
-        <label for="identificador" class="mb-2 text-sm font-bold">Correo Electrónico o Código de Colegiado: *</label>
-        <input type="text" placeholder="abc@example.com/012345" [(ngModel)]="authDTO.identificador" name="identificador" required class="p-2 mb-4 border border-gray-300 rounded-xl">
 
-        <label for="contrasenia" class="mb-2 text-sm font-bold">Contraseña: *</label>
-        <input type="password" placeholder="*********" [(ngModel)]="authDTO.contrasenia" name="contrasenia" required class="p-2 mb-4 border border-gray-300 rounded-xl">
+        <input type="text" placeholder="Ingrese Correo o Código de Colegiado *" [(ngModel)]="authDTO.identificador" name="identificador" required class="p-2 mb-4 border border-gray-300 rounded-xl">
 
-        <button type="submit" class="bg-orange-500 text-white py-2 rounded-lg mt-2">
+        @if(errorIdentificador){
+          <div class="text-start error-message text-red-500 text-sm -mt-3 mb-4 ml-2">{{ mensajeErrorIdentificador }}</div>
+        }
+
+
+        <input type="password" placeholder="Ingrese Contraseña *" [(ngModel)]="authDTO.contrasenia" name="contrasenia" required class="p-2 mb-4 border border-gray-300 rounded-xl">
+
+        @if(errorContrasenia){
+          <div class="text-start error-message text-red-500 text-sm -mt-3 mb-4 ml-2">{{ mensajeErrorContrasenia }}</div>
+        }
+
+        <p class="obligatorio-texto text-xs text-gray-500 mt-2 text-center mr-2">* Los campos obligatorios deben ser completados</p>
+
+
+        <button type="submit"  class="bg-[#ee8326] hover:bg-[#c76d21] text-white py-1 mt-5 w-48 mx-auto font-semibold text-lg rounded-2xl">
           Ingresar
         </button>
 
-        <p class="obligatorio-texto text-xs text-gray-500 mt-2">* Todos los campos son obligatorios y deben ser llenados.</p>
+        @if(errorRegistro){
+          <div class="text-center error-message text-red-500 text-sm mt-3">{{ mensajeError }}</div>
+        }
 
         @if (true) {
           <p class="error-message text-red-500 text-sm mt-2"></p>
         }
 
-        <div class="separador bg-gray-300 h-px my-4"></div>
+        <div class="separador bg-black h-px my-4 mb-5"></div>
 
-        <p class="text-center">Si aún no tienes una cuenta, entonces ¡Crea una!</p>
+        <p class="text-center text-xm">Si aún no tienes una cuenta, entonces ¡Crea una!</p>
 
-        <button [routerLink]="['/cocinaTuCuenta']" class="bg-orange-500 text-white py-2 rounded-lg mt-4 w-full">
+        <button [routerLink]="['/cocinaTuCuenta']"
+                class="bg-[#ee8326] hover:bg-[#c76d21] text-white py-1 mt-5 w-48 mx-auto font-semibold text-lg rounded-2xl mb-3">
           ¡Cocina tu Cuenta!
         </button>
 
       </form>
 
     </div>
+
   </div>
+
 
 </main>

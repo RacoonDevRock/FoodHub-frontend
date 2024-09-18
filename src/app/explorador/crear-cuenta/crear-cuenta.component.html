@@ -1,9 +1,9 @@
 <main class="flex flex-col items-center">
-  <div class="formulario-container lg:py-20 py-10 flex flex-col items-center justify-center">
+  <div class=" lg:py-20 py-10 flex flex-col items-center justify-center">
 
     <h2 class="mb-5 lg:text-2xl text-xl lg:font-normal font-semibold text-center -mt-5">Regístrate y Sé parte de FoodHub</h2>
 
-    <div class="formulario-card bg-white px-10 py-6 shadow-lg lg:w-[500px] w-[350px]">
+    <div class=" bg-white px-10 py-6 shadow-lg lg:w-[500px] w-[350px]">
 
 
     <div class="items-center text-center justify-center">
@@ -68,7 +68,7 @@
         <p class="text-xs text-gray-400 -my-3 ml-2">Ejm: 0012345</p>
 
         <!-- Botón de enviar -->
-        <button type="submit" [disabled]="cargando" class="bg-orange-500 text-white py-2 mt-5 w-32 mx-auto font-semibold text-lg rounded-2xl">
+        <button type="submit" [disabled]="cargando" class="bg-[#ee8326] hover:bg-[#c76d21] text-white py-1 mt-5 w-32 mx-auto font-semibold text-lg rounded-2xl">
          @if(!cargando){
            <span>Crear</span>
          } @else {
@@ -96,7 +96,7 @@
             <p class="text-justify">Te enviamos un mensaje a tu correo electrónico. Pero desde ya busca todas las recetas que desees.</p>
           </div>
           <div class="flex justify-center">
-            <button (click)="cerrarModalCuentaCreada()" class="bg-orange-500 font-semibold text-white px-6 py-1 mt-5 text-lg rounded-2xl">Empezar</button>
+            <button (click)="cerrarModalCuentaCreada()" class="bg-[#ee8326] hover:bg-[#c76d21] font-semibold text-white px-6 py-1 mt-5 text-lg rounded-2xl">Empezar</button>
           </div>
         </div>
       </div>

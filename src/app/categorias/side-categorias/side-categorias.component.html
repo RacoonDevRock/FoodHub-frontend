@@ -1,63 +1,66 @@
-<main>
-  <div class="sidebar">
-    <h2>Categorías</h2>
 
-    <ul>
-      <li>
-        <a [routerLink]="['/categoria/desayuno']" [routerLinkActive]="['active']">
+    <h2 class="text-white text-center text-lg font-bold mb-5 mt-2">Categorías</h2>
+
+    <ul class="list-none">
+      <li class="py-5 text-center border-b border-gray-700">
+        <a [routerLink]="['/categoria/desayuno']" [routerLinkActive]="['active']" class="flex items-center justify-start text-gray-400 hover:text-white transition-colors duration-300">
           <img
             src="/desayuno-icon.png"
             alt="Desayuno Icon"
+            class="w-[30px] h-[30px] mr-3 ml-7 filter brightness-50"
           />
-          <span>Desayuno</span>
+          <span class="flex-1 text-center">Desayuno</span>
         </a>
       </li>
-      <li>
-        <a [routerLink]="['/categoria/almuerzo']" [routerLinkActive]="['active']">
+      <li class="py-5 text-center border-b border-gray-700">
+        <a [routerLink]="['/categoria/almuerzo']" [routerLinkActive]="['active']" class="flex items-center justify-start text-gray-400 hover:text-white transition-colors duration-300">
           <img
             src="/almuerzo-icon.png"
             alt="Almuerzo Icon"
+            class="w-[30px] h-[30px] mr-3 ml-7 filter brightness-50"
           />
-          <span>Almuerzo</span>
+          <span class="flex-1 text-center">Almuerzo</span>
         </a>
       </li>
-      <li>
-        <a [routerLink]="['/categoria/cena']" [routerLinkActive]="['active']">
+      <li class="py-5 text-center border-b border-gray-700">
+        <a [routerLink]="['/categoria/cena']" [routerLinkActive]="['active']" class="flex items-center justify-start text-gray-400 hover:text-white transition-colors duration-300">
           <img
             src="/cena-icon.png"
-            alt="CEna Icon"
+            alt="Cena Icon"
+            class="w-[30px] h-[30px] mr-3 ml-7 filter brightness-50"
           />
-          <span>Cena</span>
+          <span class="flex-1 text-center">Cena</span>
         </a>
       </li>
-      <li>
-        <a [routerLink]="['/categoria/postres']" [routerLinkActive]="['active']">
+      <li class="py-5 text-center border-b border-gray-700">
+        <a [routerLink]="['/categoria/postres']" [routerLinkActive]="['active']" class="flex items-center justify-start text-gray-400 hover:text-white transition-colors duration-300">
           <img
             src="/postres-icon.png"
             alt="Postres Icon"
+            class="w-[30px] h-[30px] mr-3 ml-7 filter brightness-50"
           />
-          <span>Postres</span>
+          <span class="flex-1 text-center">Postres</span>
         </a>
       </li>
-      <li>
-        <a [routerLink]="['/categoria/superavit']" [routerLinkActive]="['active']">
+      <li class="py-5 text-center border-b border-gray-700">
+        <a [routerLink]="['/categoria/superavit']" [routerLinkActive]="['active']" class="flex items-center justify-start text-gray-400 hover:text-white transition-colors duration-300">
           <img
             src="/superavit-icon.png"
             alt="Superávit Icon"
+            class="w-[30px] h-[30px] mr-3 ml-7 filter brightness-50"
           />
-          <span>Superávit</span>
+          <span class="flex-1 text-center">Superávit</span>
         </a>
       </li>
-      <li>
-        <a [routerLink]="['/categoria/deficit']" [routerLinkActive]="['active']">
+      <li class="py-5 text-center">
+        <a [routerLink]="['/categoria/deficit']" [routerLinkActive]="['active']" class="flex items-center justify-start text-gray-400 hover:text-white transition-colors duration-300">
           <img
             src="/deficit-icon.png"
             alt="Déficit Icon"
+            class="w-[30px] h-[30px] mr-3 ml-7 filter brightness-50"
           />
-          <span>Déficit</span>
+          <span class="flex-1 text-center">Déficit</span>
         </a>
       </li>
-
     </ul>
-  </div>
-</main>
+

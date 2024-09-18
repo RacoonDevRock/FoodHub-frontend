@@ -64,7 +64,7 @@ export const routes: Routes = [
     children:[
       {
         path: '',
-        title: 'Inicio',
+        title: '',
         loadComponent: () => import('./categorias/inicio-categorias/inicio.component').then(m => m.InicioCategoriasComponent),
       },
       {
