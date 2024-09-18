@@ -1,2 +1,6 @@
-<app-header-explorador />
-<app-iniciar-sesion />
+<div style="text-align: center; margin-top: 50px">
+  <h1>Porfavor verifique su cuenta</h1>
+  <button (click)="verificarCuenta()" class="btn btn-primary" [routerLink]="['/iniciarSesion']">
+    Presiona esto para verificar cuenta
+  </button>
+</div>

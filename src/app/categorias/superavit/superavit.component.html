@@ -14,7 +14,7 @@
         class="card"
         (click)="verContenido(recipe)"
       >
-        <img [src]="recipe.imagenReceta" [alt]="recipe.titulo" />
+        <img [src]="urlImages + recipe.imagenReceta" [alt]="recipe.titulo" />
 
         <div class="card-content">
           <h3>{{ recipe.titulo }}</h3>

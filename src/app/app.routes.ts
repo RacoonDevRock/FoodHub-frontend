@@ -103,7 +103,7 @@ export const routes: Routes = [
       {
         path: 'cardBody/:id',
         title: 'CardBody Id',
-        loadComponent: () => import('./categorias/categorias.component').then(m => m.CategoriasComponent),
+        loadComponent: () => import('./categorias/card-body/card-body.component').then(m => m.CardBodyComponent),
       }
     ]
   },

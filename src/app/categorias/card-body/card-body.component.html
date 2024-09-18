@@ -1,13 +1,13 @@
 <main>
   <div class="card-container">
     <div class="back-button" (click)="goBack()">
-      <img src="../../../assets/images/atras.svg" alt="atras" />
+      <img src="/atras.svg" alt="atras" />
     </div>
 
     <div class="card">
       <div class="card-content">
         <div class="column-left">
-          <img src="{{ recetaDTO.imagen }}" [alt]="recetaDTO.titulo" />
+          <img [src]="urlImages + recetaDTO.imagen" [alt]="recetaDTO.titulo" />
           <h2>{{ recetaDTO.titulo }}</h2>
 
           <div class="descripcion">

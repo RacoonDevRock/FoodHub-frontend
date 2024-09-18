@@ -57,10 +57,9 @@ export class CrearRecetaCreadorComponent {
   }
 
   validarCamposYPublicar() {
-
     this.cargando = true;
     this.resetErrores();
-
+  
     const nuevaReceta: RecetaDTO = {
       titulo: this.titulo,
       descripcion: this.descripcion,
@@ -70,40 +69,38 @@ export class CrearRecetaCreadorComponent {
       categoria: this.categoria,
       ingredientes: this.ingredientes,
       instrucciones: this.instrucciones,
-      imagen: this.imagen,
+      imagen: this.imagen, // Esto es innecesario ahora
     };
-
-    // Verificar si algún ingrediente está vacío
-    if (this.ingredientes.some(ingrediente => !ingrediente.ingrediente)) {
+  
+    // Verificar si algún ingrediente o instrucción está vacío
+    if (this.ingredientes.some(ingrediente => !ingrediente.ingrediente) ||
+        this.instrucciones.some(instruccion => !instruccion.instruccion)) {
       this.errorRegistro = true;
       this.cargando = false;
       return;
     }
-
-    // Verificar si algún paso está vacío
-    if (this.instrucciones.some(instruccion => !instruccion.instruccion)) {
-      this.errorRegistro = true;
-      this.cargando = false;
-      return;
-    }
-
-    this.recetaService.crearReceta(nuevaReceta).subscribe((response:any) => {
-        console.log(response)
-        this.mostrarModalPublicado = true; // Lógica de validación de campos y creación de cuenta
-        if (this.validarYCrearCuenta()) {
+  
+    if (this.selectedFile) {
+      // Llamar al servicio pasando el objeto recetaDTO y el archivo seleccionado
+      this.recetaService.crearReceta(nuevaReceta, this.selectedFile).subscribe(
+        (response: any) => {
+          console.log(response);
           this.mostrarModalPublicado = true;
           this.errorRegistro = false;
+          this.cargando = false;
+        },
+        (error) => {
+          console.error('Error al crear la receta:', error);
+          this.errorRegistro = true;
+          this.cargando = false;
         }
-        this.cargando = false;
-      },
-      (error) => {
-        console.error('Error al crear la receta:', error);
-        this.errorRegistro = true;
-        this.cargando = false;
-      }
-    );
-
-  }
+      );
+    } else {
+      console.error('No se ha seleccionado ninguna imagen');
+      this.errorRegistro = true;
+      this.cargando = false;
+    }
+  }  
 
   agregarIngrediente() {
     this.ingredientes.push({ ingrediente: '' });

@@ -17,12 +17,24 @@ import { FormsModule } from '@angular/forms';
 export class CrearCuentaComponent {
   mostrarModalCuentaCreada: boolean = false;
 
+  // Errores
   errorRegistro: boolean = false;
   errorNombre: boolean = false;
+  errorApellidoPaterno: boolean = false;
+  errorApellidoMaterno: boolean = false;
   errorCorreo: boolean = false;
-  errorCodigoColegiatura: boolean = false;
   errorContrasenia: boolean = false;
+  errorCodigoColegiatura: boolean = false;
+
+  // Mensajes de error individuales
   mensajeError: string = '';
+  mensajeErrorNombre: string = '';
+  mensajeErrorApellidoPaterno: string = '';
+  mensajeErrorApellidoMaterno: string = '';
+  mensajeErrorCorreo: string = '';
+  mensajeErrorContrasenia: string = '';
+  mensajeErrorCodigoColegiatura: string = '';
+
   cargando: boolean = false;
 
   creadorDTO: CreadorDTO = {
@@ -40,42 +52,53 @@ export class CrearCuentaComponent {
     this.cargando = true;
     this.resetErrores();
 
-    // Validación de campos específicos
-    if (!this.creadorDTO.nombre || !this.creadorDTO.apellidoPaterno || !this.creadorDTO.apellidoMaterno ||
-      !this.creadorDTO.correoElectronico || !this.creadorDTO.contrasenia || !this.creadorDTO.codigoColegiatura) {
-      this.errorRegistro = true;
-      this.mensajeError = 'Complete todos los campos obligatorios.';
-      this.cargando = false;
-      return;
+    // Validación de campos
+    if (!this.creadorDTO.nombre) {
+      this.errorNombre = true;
+      this.mensajeErrorNombre = 'El campo de nombres es obligatorio.*';
     }
 
-    // Validación del correo electrónico
-    if (!this.validarCorreo(this.creadorDTO.correoElectronico)) {
-      this.errorRegistro = true;
+    if (!this.creadorDTO.apellidoPaterno) {
+      this.errorApellidoPaterno = true;
+      this.mensajeErrorApellidoPaterno = 'El apellido paterno es obligatorio.*';
+    }
+
+    if (!this.creadorDTO.apellidoMaterno) {
+      this.errorApellidoMaterno = true;
+      this.mensajeErrorApellidoMaterno = 'El apellido materno es obligatorio.*';
+    }
+
+    if (!this.creadorDTO.correoElectronico) {
       this.errorCorreo = true;
-      this.mensajeError = 'Ingrese un correo electrónico válido.';
-      this.cargando = false;
-      return;
+      this.mensajeErrorCorreo = 'El correo electrónico es obligatorio.*';
+    } else if (!this.validarCorreo(this.creadorDTO.correoElectronico)) {
+      this.errorCorreo = true;
+      this.mensajeErrorCorreo = 'El formato del correo electrónico es incorrecto.*';
     }
 
-    // Validación del código de colegiatura
-    if (!this.validarCodigoColegiatura(this.creadorDTO.codigoColegiatura)) {
-      this.errorRegistro = true;
-      this.errorCodigoColegiatura = true;
-      this.mensajeError = 'Ingrese un código de colegiatura válido.';
-      this.cargando = false;
-      return;
-    }
-
-    if (this.creadorDTO.contrasenia.length < 8 || !/[A-Z]/.test(this.creadorDTO.contrasenia)) {
-      this.errorRegistro = true;
+    if (!this.creadorDTO.contrasenia) {
       this.errorContrasenia = true;
-      this.mensajeError = 'La contraseña debe tener mínimo 8 caracteres, incluyendo al menos una letra mayúscula.';
+      this.mensajeErrorContrasenia = 'La contraseña es obligatoria.';
+    } else if (this.creadorDTO.contrasenia.length < 8 || !/[A-Z]/.test(this.creadorDTO.contrasenia)) {
+      this.errorContrasenia = true;
+      this.mensajeErrorContrasenia = 'La contraseña debe tener al menos 8 caracteres y una mayúscula.*';
+    }
+
+    if (!this.creadorDTO.codigoColegiatura) {
+      this.errorCodigoColegiatura = true;
+      this.mensajeErrorCodigoColegiatura = 'El código de colegiatura es obligatorio.*';
+    } else if (!this.validarCodigoColegiatura(this.creadorDTO.codigoColegiatura)) {
+      this.errorCodigoColegiatura = true;
+      this.mensajeErrorCodigoColegiatura = 'Ingrese un código de colegiatura válido.*';
+    }
+
+
+    if (this.errorNombre || this.errorApellidoPaterno || this.errorApellidoMaterno || this.errorCorreo || this.errorContrasenia || this.errorCodigoColegiatura) {
       this.cargando = false;
       return;
     }
 
-
+    // Llamada al servicio de autenticación
     this.authService.registrarCreador(this.creadorDTO).subscribe((response) => {
 
       console.log('Respuesta del servidor:', response);
@@ -89,14 +112,10 @@ export class CrearCuentaComponent {
     }, error => {
       console.error('Error al registrar:', error);
       this.errorRegistro = true;
-      this.mensajeError = 'Validación incorrecta. vuelvalo a intentar.';
+      this.mensajeError = 'Validación incorrecta, vuelvalo a intentar.*';
       this.cargando = false;
     });
-  }
 
-  cerrarModalCuentaCreada() {
-    this.mostrarModalCuentaCreada = false;
-    this.router.navigate(['/iniciarSesion'])
 
   }
 
@@ -104,25 +123,36 @@ export class CrearCuentaComponent {
     return true;
   }
 
-  // Nueva función para reiniciar los errores
+  cerrarModalCuentaCreada(): void {
+    this.mostrarModalCuentaCreada = false;
+    this.router.navigate(['/login']);
+  }
+
   resetErrores(): void {
     this.errorRegistro = false;
     this.errorNombre = false;
+    this.errorApellidoPaterno = false;
+    this.errorApellidoMaterno = false;
     this.errorCorreo = false;
-    this.errorCodigoColegiatura = false;
     this.errorContrasenia = false;
+    this.errorCodigoColegiatura = false;
+
     this.mensajeError = '';
+    this.mensajeErrorNombre = '';
+    this.mensajeErrorApellidoPaterno = '';
+    this.mensajeErrorApellidoMaterno = '';
+    this.mensajeErrorCorreo = '';
+    this.mensajeErrorContrasenia = '';
+    this.mensajeErrorCodigoColegiatura = '';
   }
 
-  // Nueva función para validar el formato del correo electrónico
   validarCorreo(correo: string): boolean {
-    const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    return regex.test(correo);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(correo);
   }
 
-  // Nueva función para validar el código de colegiatura
   validarCodigoColegiatura(codigo: string): boolean {
-    const regex = /^\d{6}$/;
-    return regex.test(codigo);
+    const codigoRegex = /^[0-9]{6}$/;
+    return codigoRegex.test(codigo);
   }
 }

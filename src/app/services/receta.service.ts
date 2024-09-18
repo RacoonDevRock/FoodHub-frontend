@@ -13,8 +13,18 @@ export class RecetaService {
 
   constructor(private http: HttpClient) {}
 
-  crearReceta(recetaDTO: RecetaDTO): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/crear`, recetaDTO);
+  crearReceta(recetaDTO: RecetaDTO, file: File): Observable<any> {
+    const formData: FormData = new FormData();
+  
+    // Convertir recetaDTO a JSON y añadirla al FormData
+    formData.append('receta', new Blob([JSON.stringify(recetaDTO)], {
+      type: 'application/json'
+    }));
+  
+    // Añadir el archivo de imagen al FormData
+    formData.append('imagen', file);
+  
+    return this.http.post<any>(`${this.baseUrl}/crear`, formData);
   }
 
   mostrarRecetasPorCategoria(

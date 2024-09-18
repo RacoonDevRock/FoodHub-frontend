@@ -6,12 +6,12 @@
       <h2 class="mb-4 font-bold text-lg text-center text-orange-500">Ingresa a la Gran Comunidad <br> Saludable de FoodHub</h2>
       <p class="mb-4 text-sm text-center">Ingresa tus datos registrados</p>
 
-      <form class="flex flex-col">
+      <form class="flex flex-col" (ngSubmit)="iniciarSesion()">
         <label for="identificador" class="mb-2 text-sm font-bold">Correo Electrónico o Código de Colegiado: *</label>
-        <input type="text" placeholder="abc@example.com/012345" id="identificador" name="identificador" required class="p-2 mb-4 border border-gray-300 rounded-xl">
+        <input type="text" placeholder="abc@example.com/012345" [(ngModel)]="authDTO.identificador" name="identificador" required class="p-2 mb-4 border border-gray-300 rounded-xl">
 
         <label for="contrasenia" class="mb-2 text-sm font-bold">Contraseña: *</label>
-        <input type="password" placeholder="*********" id="contrasenia" name="contrasenia" required class="p-2 mb-4 border border-gray-300 rounded-xl">
+        <input type="password" placeholder="*********" [(ngModel)]="authDTO.contrasenia" name="contrasenia" required class="p-2 mb-4 border border-gray-300 rounded-xl">
 
         <button type="submit" class="bg-orange-500 text-white py-2 rounded-lg mt-2">
           Ingresar

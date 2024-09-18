@@ -29,7 +29,7 @@ export class PostresComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.obtenerRecetasPorCategoria('DEFICIT');
+    this.obtenerRecetasPorCategoria('POSTRES');
   }
 
   obtenerRecetasPorCategoria(categoria: string) {
