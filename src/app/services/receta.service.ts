@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment.development';
 import { RecetaDTO } from '../interfaces/RecetaDTO';
 import { Observable } from 'rxjs';
 import { RecetaCategoriaDTO } from '../interfaces/RecetaCategoriaDTO';
+import { RecetaBodyDTO } from '../interfaces/RecetaBodyDTO';
 
 @Injectable({
   providedIn: 'root',
@@ -35,7 +36,7 @@ export class RecetaService {
     );
   }
 
-  verReceta(idReceta: number): Observable<RecetaDTO> {
-    return this.http.get<RecetaDTO>(`${this.baseUrl}/${idReceta}`);
+  verReceta(idReceta: number): Observable<RecetaBodyDTO> {
+    return this.http.get<RecetaBodyDTO>(`${this.baseUrl}/${idReceta}`);
   }
 }

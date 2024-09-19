@@ -1,26 +1,38 @@
 <main>
   <div class="flex flex-col items-center">
-
     <div class="px-28 min-w-[1200px]">
-
+      @if (recetaDTO) {
       <div class="mt-12 px-10">
-
         <div>
-          <img src="/atras.png" alt="atras" (click)="goBack()" class="max-h-5 absolute -ml-16 mt-1 cursor-pointer" />
+          <img
+            src="/atras.png"
+            alt="atras"
+            (click)="goBack()"
+            class="max-h-5 absolute -ml-16 mt-1 cursor-pointer"
+          />
         </div>
 
         <div>
-          <span class="text-gray-500">{{ recetaDTO.categoria | titlecase }} / </span> {{ recetaDTO.titulo | titlecase }}
+          <span class="text-gray-500"
+            >{{ recetaDTO.categoria | titlecase }} /
+          </span>
+          {{ recetaDTO.titulo | titlecase }}
         </div>
-
       </div>
 
       <div class="flex">
+        <div
+          class="p-10 flex flex-col items-start justify-start text-left w-2/5"
+        >
+          <img
+            [src]="urlImages + recetaDTO.imagen"
+            [alt]="recetaDTO.titulo | titlecase"
+            class="max-w-[450px] w-full h-[350px] object-cover"
+          />
 
-          <div class="p-10 flex flex-col items-start justify-start text-left w-2/5">
-          <img [src]="urlImages + recetaDTO.imagen" [alt]="recetaDTO.titulo | titlecase" class="max-w-[450px] w-full h-[350px] object-cover" />
-
-          <h2 class="text-2xl font-semibold text-gray-800 mt-2">{{ recetaDTO.titulo | titlecase }}</h2>
+          <h2 class="text-2xl font-semibold text-gray-800 mt-2">
+            {{ recetaDTO.titulo | titlecase }}
+          </h2>
 
           <div class="mt-2 mb-2 text-justify text-sm">
             <p>{{ recetaDTO.descripcion | titlecase }}</p>
@@ -51,19 +63,23 @@
               </div>
             </div>
 
-            <div class="flex items-center mt-3   text-sm">
+            <div class="flex items-center mt-3 text-sm">
               <p class="font-semibold">Publicado por:</p>
             </div>
 
             <div class="flex items-center mt-1 text-sm">
-
               <div class="flex">
-
-                <img src="/default-profile-image.jpg" alt="atras" class="rounded-3xl h-7 w-7 mr-2" />
-
+                <img
+                  [src]="
+                    recetaDTO.fotoPerfil
+                      ? urlImages + recetaDTO.fotoPerfil
+                      : '/default-profile-image.jpg'
+                  "
+                  alt="Foto de perfil"
+                  class="rounded-3xl h-7 w-7 mr-2"
+                />
               </div>
-              <p class="">Luis Palacios Rodriguez</p>
-
+              <p class="">{{ recetaDTO.autor }}</p>
             </div>
           </div>
         </div>
@@ -73,7 +89,7 @@
           <div class="ml-7 mb-4">
             <ul class="list-disc text-sm">
               @for (ingrediente of recetaDTO.ingredientes; track $index) {
-                <li>{{ ingrediente.ingrediente | titlecase }}</li>
+              <li>{{ ingrediente.ingrediente | titlecase }}</li>
               }
             </ul>
           </div>
@@ -83,14 +99,17 @@
             <ol class="list-none">
               <div>
                 @for (instruccion of recetaDTO.instrucciones; track $index) {
-                  <p class="font-semibold">Paso {{ $index + 1 }}:</p>
-                  <p class="text-justify mb-2 text-sm">{{ instruccion.instruccion | titlecase }}</p>
+                <p class="font-semibold">Paso {{ $index + 1 }}:</p>
+                <p class="text-justify mb-2 text-sm">
+                  {{ instruccion.instruccion | titlecase }}
+                </p>
                 }
               </div>
             </ol>
           </div>
         </div>
       </div>
+      }
     </div>
   </div>
 </main>
