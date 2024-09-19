@@ -25,4 +25,5 @@ export class SharedService {
     this.recetaAlmacenada = value;
   }
 
+
 }

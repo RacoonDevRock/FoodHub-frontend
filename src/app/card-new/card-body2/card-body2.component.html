@@ -1,10 +1,25 @@
 <main>
   <div class="flex flex-col items-center">
 
-    <div class="px-10  min-w-[1200px]">
+    <div class="px-28 min-w-[1200px]">
+
+      <div class="mt-12 px-10">
+
+        <div>
+          <img src="/atras.png" alt="atras" (click)="goBack()" class="max-h-5 absolute -ml-16 mt-1 cursor-pointer" />
+        </div>
+
+        <div>
+          <span class="text-gray-500">{{ recetaDTO.categoria | titlecase }} / </span> {{ recetaDTO.titulo | titlecase }}
+        </div>
+
+      </div>
+
       <div class="flex">
-        <div class="p-10  flex flex-col items-start justify-start text-left w-2/5">
-          <img [src]="urlImages + recetaDTO.imagen" [alt]="recetaDTO.titulo | titlecase" class="max-w-[450px] w-full h-auto object-cover" />
+
+          <div class="p-10 flex flex-col items-start justify-start text-left w-2/5">
+          <img [src]="urlImages + recetaDTO.imagen" [alt]="recetaDTO.titulo | titlecase" class="max-w-[450px] w-full h-[350px] object-cover" />
+
           <h2 class="text-2xl font-semibold text-gray-800 mt-2">{{ recetaDTO.titulo | titlecase }}</h2>
 
           <div class="mt-2 mb-2 text-justify text-sm">

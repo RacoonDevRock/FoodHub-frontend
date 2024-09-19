@@ -10,7 +10,7 @@
       >
         Explorar Recetas
         <span class="block absolute bottom-[-20px] left-[-10%] w-[120%] h-1 bg-[#ee8326] transition-transform transform scale-x-0"
-              [ngClass]="{'scale-x-100': isActive('/categoria')}">
+              [ngClass]="{'scale-x-100': isActiveCategoria()}">
         </span>
       </a>
     </div>
@@ -35,7 +35,11 @@
 
     <div class="absolute right-2 flex items-center mt-3">
       <a [routerLink]="['/ingresar/miPerfil']">
-        <img src="/icono_perfil.png" alt="Perfil" class="w-12 h-12 mr-5" />
+        <img
+          [src]="creadorDTO.fotoPerfil ? (urlImages + creadorDTO.fotoPerfil) : '/default-profile-image.jpg'"
+          alt="Foto de perfil"
+          class="w-14 h-14 object-cover transition duration-300 ease-in-out rounded-full mr-10"
+        />
       </a>
     </div>
 

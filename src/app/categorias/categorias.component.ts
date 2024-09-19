@@ -5,6 +5,7 @@ import { SharedService } from '../services/shared.service';
 import {RouterOutlet} from "@angular/router";
 import {FooterComponent} from "../footer/footer.component";
 import {SideCategoriasComponent} from "./side-categorias/side-categorias.component";
+import {NgClass} from "@angular/common";
 
 @Component({
   selector: 'app-categorias',
@@ -14,7 +15,8 @@ import {SideCategoriasComponent} from "./side-categorias/side-categorias.compone
     HeaderCreadorComponent,
     RouterOutlet,
     FooterComponent,
-    SideCategoriasComponent
+    SideCategoriasComponent,
+    NgClass
   ],
   templateUrl: './categorias.component.html',
   styleUrl: './categorias.component.css'

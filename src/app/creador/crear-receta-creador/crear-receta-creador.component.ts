@@ -21,7 +21,7 @@ export class CrearRecetaCreadorComponent {
   descripcion: string = '';
   tiempoCoccion: number = 0;
   porciones: number = 0;
-  calorias: number = 0;
+  calorias: number = 0 ;
   categoria!: Categoria; // Valor por defecto
   imagen: string = '';
 
@@ -59,7 +59,7 @@ export class CrearRecetaCreadorComponent {
   validarCamposYPublicar() {
     this.cargando = true;
     this.resetErrores();
-  
+
     const nuevaReceta: RecetaDTO = {
       titulo: this.titulo,
       descripcion: this.descripcion,
@@ -71,7 +71,7 @@ export class CrearRecetaCreadorComponent {
       instrucciones: this.instrucciones,
       imagen: this.imagen, // Esto es innecesario ahora
     };
-  
+
     // Verificar si algún ingrediente o instrucción está vacío
     if (this.ingredientes.some(ingrediente => !ingrediente.ingrediente) ||
         this.instrucciones.some(instruccion => !instruccion.instruccion)) {
@@ -79,7 +79,7 @@ export class CrearRecetaCreadorComponent {
       this.cargando = false;
       return;
     }
-  
+
     if (this.selectedFile) {
       // Llamar al servicio pasando el objeto recetaDTO y el archivo seleccionado
       this.recetaService.crearReceta(nuevaReceta, this.selectedFile).subscribe(
@@ -100,7 +100,7 @@ export class CrearRecetaCreadorComponent {
       this.errorRegistro = true;
       this.cargando = false;
     }
-  }  
+  }
 
   agregarIngrediente() {
     this.ingredientes.push({ ingrediente: '' });

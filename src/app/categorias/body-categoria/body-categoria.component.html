@@ -1,9 +1,18 @@
 <div class="flex flex-col min-h-full"> <!-- Ajuste en la estructura principal -->
   <!-- Contenedor de recetas -->
   <div class="flex flex-wrap justify-start ml-7 flex-grow"> <!-- flex-grow aplicado aquí -->
+
+    @if(recipes.length === 0){
+      <div class="text-center w-full h-full mt-10 py-60">
+        <p class="text-lg font-semibold">No hay ninguna receta de esta categoría ({{ categoria }}) por el momento</p>
+      </div>
+    }
+
+
+
     <div
       *ngFor="let recipe of recipes | paginate: { itemsPerPage: 6, currentPage: page }"
-      class="card w-[calc(32%-20px)] h-[275px] shadow-lg transition-transform duration-300 ease-in-out mt-10 mr-5 ml-2 flex flex-col bg-white hover:scale-105"
+      class="cursor-pointer card w-[calc(32%-20px)] h-[275px] shadow-lg transition-transform duration-300 ease-in-out mt-10 mr-5 ml-2 flex flex-col bg-white hover:scale-105"
       (click)="verContenido(recipe)"
     >
       <img
@@ -13,8 +22,8 @@
       />
 
       <div class="p-4">
-        <h3 class="m-0 text-lg font-bold">{{ recipe.titulo }}</h3>
-        <p class="my-2 text-justify text-sm">{{ recipe.descripcion }}</p>
+        <h3 class="m-0 text-lg font-bold line-clamp-1">{{ recipe.titulo }}</h3>
+        <p class="my-2 text-justify text-sm line-clamp-2">{{ recipe.descripcion }}</p>
       </div>
     </div>
   </div>

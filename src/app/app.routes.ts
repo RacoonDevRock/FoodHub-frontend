@@ -112,6 +112,17 @@ export const routes: Routes = [
     loadComponent: () => import('./creador/verify-account/verify-account.component'),
   },
   {
+    path: 'cardBody2/:id',
+    loadComponent: () => import('./card-new/card-new.component').then(m => m.CardNewComponent),
+    children:[
+      {
+        path: '',
+        title: '',
+        loadComponent: () => import('./card-new/card-body2/card-body2.component').then(m => m.CardBody2Component),
+      },
+    ]
+  },
+  {
     path: '**',
     redirectTo: '/explorador',
     pathMatch: 'full'

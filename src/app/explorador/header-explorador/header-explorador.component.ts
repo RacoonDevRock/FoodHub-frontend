@@ -34,4 +34,8 @@ export class HeaderExploradorComponent implements OnInit {
   isActive(route: string): boolean {
     return this.router.url === route;
   }
+  isActiveCategoria(): boolean {
+    const url = this.router.url;
+    return url === '/categoria' || url.startsWith('/categoria/');
+  }
 }

@@ -1,21 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { RecetaDTO } from '../../interfaces/RecetaDTO';
-import { RecetaService } from '../../services/receta.service';
 import { ActivatedRoute } from '@angular/router';
-import { SharedService } from '../../services/shared.service';
-import { environment } from '../../../environments/environment.development';
 import {TitleCasePipe} from "@angular/common";
+import {environment} from "../../../environments/environment";
+import {SharedService} from "../../services/shared.service";
+import {RecetaService} from "../../services/receta.service";
+import {RecetaDTO} from "../../interfaces/RecetaDTO";
+
 
 @Component({
-  selector: 'app-card-body',
+  selector: 'app-card-body2',
   standalone: true,
-  imports: [
-    TitleCasePipe
-  ],
-  templateUrl: './card-body.component.html',
-  styleUrl: './card-body.component.css',
+    imports: [
+        TitleCasePipe
+    ],
+  templateUrl: './card-body2.component.html',
+  styleUrl: './card-body2.component.css'
 })
-export class CardBodyComponent implements OnInit {
+export class CardBody2Component implements OnInit {
   public urlImages: string = `${environment.apiUrl}/imagenes/`;
   public recetaDTO!: RecetaDTO;
 
