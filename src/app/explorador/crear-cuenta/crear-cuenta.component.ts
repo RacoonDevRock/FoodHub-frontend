@@ -112,7 +112,7 @@ export class CrearCuentaComponent {
     }, error => {
       console.error('Error al registrar:', error);
       this.errorRegistro = true;
-      this.mensajeError = 'Validación incorrecta, vuelvalo a intentar.*';
+      this.mensajeError = error.error.message;
       this.cargando = false;
     });
 

@@ -69,7 +69,7 @@ export class IniciarSesionComponent implements OnInit {
         console.error('Error al iniciar sesión:', error);
         this.errorRegistro = true;
         if(!this.errorIdentificador&&!this.errorContrasenia){
-          this.mensajeError = 'Error al iniciar sesión. Inténtalo de nuevo';
+          this.mensajeError = error.error.message;
 
         }
       }
