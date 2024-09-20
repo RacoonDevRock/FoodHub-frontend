@@ -5,8 +5,11 @@
 
 
 
-    <div class="card bg-white px-12 py-7 text-center shadow-lg">
-      <p class="title font-bold text-2xl mb-3">Vivamos sanos, Comamos sano</p>
+    <div class="card bg-white lg:px-12 px-8 py-6 text-center shadow-lg">
+      <p class="title font-bold text-2xl mb-3 lg:block hidden">Vivamos sanos, Comamos sano</p>
+
+      <p class="title font-bold text-2xl mb-3 lg:hidden ">Vivamos sanos,<br> Comamos sano</p>
+
       <p>Descubre las mejores recetas saludables, <br> hechas por nutricionistas</p>
 
       <a [routerLink]="['/cocinaTuCuenta']">
@@ -17,34 +20,69 @@
   </div>
 
   <!-- Segundo Div -->
-  <div class="second-div bg-white flex h-32 justify-center items-center ">
-    <div class="column flex-1 mt-5 mb-5 text-center font-semibold">
+  <div class="second-div bg-white flex lg:h-32 h-40 justify-center items-center ">
+
+    <div class="column flex-1 mt-5 mb-5 text-center font-semibold lg:block hidden">
       <p>Si buscas recetas, forma parte <br> de la comunidad y cuida tu salud.</p>
     </div>
 
-    <div class="flex justify-center items-center h-[90px]">
-      <div class="separator h-16 w-[1px] bg-gray-300"></div>
+
+    <div class="column flex-1 mt-5 mb-5 text-center font-semibold lg:hidden">
+      <p>Si buscas recetas, <br> forma parte de <br> la comunidad y <br> cuida  tu salud.</p>
     </div>
 
-    <div class="column flex-1 mt-5 mb-5 text-center font-semibold">
+    <div class="flex justify-center items-center h-[90px]">
+      <div class="separator lg:h-16 h-24 w-[1px] bg-gray-300"></div>
+    </div>
+
+    <div class="column flex-1 mt-5 mb-5 text-center font-semibold lg:block hidden">
       <p>Si eres nutricionista, crea recetas <br> y fomenta la alimentación sana.</p>
     </div>
+
+    <div class="column flex-1 mt-5 mb-5 text-center font-semibold lg:hidden">
+      <p>Si eres nutricionista, <br> crea recetas y <br> fomenta la <br> alimentación sana.</p>
+    </div>
   </div>
 
+
+
+
+
+
+
+
+
   <!-- Tercer Div -->
-  <div class="flex py-14">
-    <div class="flex-1 mt-5 mb-5 text-center -mr-32">
+  <div class="flex flex-col lg:flex-row justify-center items-center lg:py-14 lg:px-0 py-10 px-10">
+    <div class="flex-1 mt-5 mb-5 text-left lg:-mr-32 lg:text-center">
       <h2 class="text-[#ee8326] text-2xl font-bold mb-4">MISIÓN</h2>
-      <p class="text-black font-semibold">Inspirar hábitos alimenticios <br> saludables y sostenibles a través <br> de recetas expertas y accesibles.</p>
+      <p class="text-black font-semibold lg:hidden">
+        Inspirar hábitos alimenticios saludables y sostenibles a través  de recetas expertas y accesibles.
+      </p>
+      <p class="text-black font-semibold lg:block hidden">Inspirar hábitos alimenticios <br> saludables y sostenibles a través <br> de recetas expertas y accesibles.</p>
+
     </div>
-    <div class="flex-1 mt-5 mb-5 text-center">
+
+    <div class="flex-1 mt-5 mb-5 text-left lg:text-center">
       <h2 class="text-[#ee8326] text-2xl font-bold mb-4">VISIÓN</h2>
-      <p class="text-black font-semibold">Crear un mundo donde la comida <br> saludable sea fácil, deliciosa y <br> esté al alcance de todos.</p>
+      <p class="text-black font-semibold lg:hidden">
+        Crear un mundo donde la comida  saludable sea  fácil, deliciosa y esté al alcance de todos.
+      </p>
+      <p class="text-black font-semibold  lg:block hidden">Crear un mundo donde la comida <br> saludable sea fácil, deliciosa y <br> esté al alcance de todos.</p>
+
     </div>
-    <div class="flex-1 mt-5 mb-5 text-center -ml-32">
-      <h2 class="text-[#ee8326] text-2xl font-bold mb-4">RESPONSABILIDAD SOCIAL</h2>
-      <p class="text-black font-semibold">Promover la sostenibilidad <br> ambiental incentivando prácticas <br> ecoamigables y saludables.</p>
+
+    <div class="flex-1 mt-5 mb-5 text-left lg:-ml-32 lg:text-center">
+      <h2 class="text-[#ee8326] text-2xl font-bold mb-4 lg:hidden">RESPONSABILIDAD <br> SOCIAL</h2>
+      <h2 class="text-[#ee8326] text-2xl font-bold mb-4 lg:block hidden">RESPONSABILIDAD SOCIAL</h2>
+
+      <p class="text-black font-semibold lg:hidden">
+        Promover la sostenibilidad ambiental incentivando prácticas ecoamigables y saludables.
+      </p>
+      <p class="text-black font-semibold lg:block hidden">Promover la sostenibilidad <br> ambiental incentivando prácticas <br> ecoamigables y saludables.</p>
+
     </div>
   </div>
+
 
 </main>

@@ -1,4 +1,4 @@
-<header class="bg-white h-28">
+<header class="bg-white h-28 lg:block hidden">
   <nav class="flex justify-center items-center space-x-24">
     <div class="nav-words">
       <a
@@ -36,3 +36,47 @@
     </div>
   </nav>
 </header>
+
+
+
+
+<header class="bg-white h-28 lg:hidden">
+  <nav class="flex justify-between items-center   ">
+
+    <div class="logo  mt-5 mx-9">
+      <a [routerLink]="['/']">
+        <img src="/logo_FoodHub.png" alt="Logo FoodHub1" class="max-h-20">
+      </a>
+    </div>
+
+    <div class="nav-words mt-5">
+      <a
+        (click)="llevarExplorador()"
+        [routerLink]="['/categoria']"
+        [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="{exact: true}"
+        class="font-bold text-2xl mt-5 relative text-[#64b43e] hover:text-[#407d2e] transition duration-300 ease-in-out"
+      >
+        Explorar Recetas
+        <span class="block absolute bottom-[-10px] left-[-10%] w-[120%] h-1 bg-[#ee8326] transition-transform transform scale-x-0"
+              [ngClass]="{'scale-x-100': isActiveCategoria()}">
+        </span>
+      </a>
+    </div>
+
+    <div class="nav-words mt-5">
+      <a
+        [routerLink]="['/iniciarSesion']"
+        [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="{exact: true}"
+        class="font-bold text-2xl mt-5 relative text-[#64b43e] hover:text-[#407d2e] transition duration-300 ease-in-out"
+      >
+        Iniciar Sesión
+        <span class="block absolute bottom-[-10px] left-[-10%] w-[120%] h-1 bg-[#ee8326] transition-transform transform scale-x-0"
+              [ngClass]="{'scale-x-100': isActive('/iniciarSesion')}">
+        </span>
+      </a>
+    </div>
+  </nav>
+</header>
+
