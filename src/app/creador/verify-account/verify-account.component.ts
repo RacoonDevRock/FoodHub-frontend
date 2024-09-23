@@ -19,6 +19,8 @@ import { IniciarSesionComponent } from '../../explorador/iniciar-sesion/iniciar-
   styleUrl: './verify-account.component.css',
 })
 export default class VerifyAccountComponent {
+  public messageError: string = '';
+
   constructor(
     private route: ActivatedRoute,
     private authService: AuthService
@@ -35,6 +37,7 @@ export default class VerifyAccountComponent {
         },
         (error) => {
           console.error('Error al confirmar cuenta:', error);
+          this.messageError = error.error.message;
           // Aquí puedes redirigir a una página de error o mostrar un mensaje al usuario
         }
       );
