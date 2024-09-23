@@ -1,114 +1,118 @@
 <main>
   <div class="flex flex-col items-center">
-    <div class="px-28 min-w-[1200px]">
+    <div class="lg:px-28">
       @if (recetaDTO) {
-      <div class="mt-12 px-10">
-        <div>
-          <img
-            src="/atras.png"
-            alt="atras"
-            (click)="goBack()"
-            class="max-h-5 absolute -ml-16 mt-1 cursor-pointer"
-          />
-        </div>
+        <div class="mt-12 px-10">
+          <div></div>
 
-        <div>
-          <span class="text-gray-500"
-            >{{ recetaDTO.categoria | titlecase }} /
+          <div class="flex">
+            <img
+              src="/atras.png"
+              alt="atras"
+              (click)="goBack()"
+              class="max-h-5 mt-0.5 mr-4 cursor-pointer"
+            />
+            <span class="text-gray-500">
+            {{ recetaDTO.categoria | titlecase }}
           </span>
-          {{ recetaDTO.titulo | titlecase }}
-        </div>
-      </div>
 
-      <div class="flex">
-        <div
-          class="p-10 flex flex-col items-start justify-start text-left w-2/5"
-        >
-          <img
-            [src]="urlImages + recetaDTO.imagen"
-            [alt]="recetaDTO.titulo | titlecase"
-            class="max-w-[450px] w-full h-[350px] object-cover"
-          />
+            <span class="">
+            / {{ recetaDTO.titulo | titlecase }}
+          </span>
 
-          <h2 class="text-2xl font-semibold text-gray-800 mt-2">
-            {{ recetaDTO.titulo | titlecase }}
-          </h2>
-
-          <div class="mt-2 mb-2 text-justify text-sm">
-            <p>{{ recetaDTO.descripcion | titlecase }}</p>
           </div>
+        </div>
 
-          <div>
-            <div class="flex items-center text-sm">
-              <p class="font-semibold mr-2">Tiempo de preparación:</p>
-              <div class="flex">
-                <p>{{ recetaDTO.tiempoCoccion }}</p>
-                <p class="ml-2">minutos</p>
+        <!-- Aquí aplicamos flex-row para pantallas lg -->
+        <div class="flex flex-col lg:flex-row">
+          <div
+            class="p-10 flex flex-col items-start justify-start text-left w-full lg:w-2/5"
+          >
+            <img
+              [src]="urlImages + recetaDTO.imagen"
+              [alt]="recetaDTO.titulo | titlecase"
+              class="max-w-[450px] w-full h-[350px] object-cover"
+            />
+
+            <h2 class="text-2xl font-semibold text-gray-800 mt-2">
+              {{ recetaDTO.titulo | titlecase }}
+            </h2>
+
+            <div class="mt-2 mb-2 text-justify text-sm">
+              <p>{{ recetaDTO.descripcion | titlecase }}</p>
+            </div>
+
+            <div>
+              <div class="flex items-center text-sm">
+                <p class="font-semibold mr-2">Tiempo de preparación:</p>
+                <div class="flex">
+                  <p>{{ recetaDTO.tiempoCoccion }}</p>
+                  <p class="ml-2">minutos</p>
+                </div>
               </div>
-            </div>
 
-            <div class="flex items-center mt-1 text-sm">
-              <p class="font-semibold mr-2">Porciones:</p>
-              <div class="flex">
-                <p>{{ recetaDTO.porciones }}</p>
-                <p class="ml-2">porciones</p>
+              <div class="flex items-center mt-1 text-sm">
+                <p class="font-semibold mr-2">Porciones:</p>
+                <div class="flex">
+                  <p>{{ recetaDTO.porciones }}</p>
+                  <p class="ml-2">porciones</p>
+                </div>
               </div>
-            </div>
 
-            <div class="flex items-center mt-1 text-sm">
-              <p class="font-semibold mr-2">Cantidad de calorías:</p>
-              <div class="flex">
-                <p>{{ recetaDTO.calorias }}</p>
-                <p class="ml-2">kcal</p>
+              <div class="flex items-center mt-1 text-sm">
+                <p class="font-semibold mr-2">Cantidad de calorías:</p>
+                <div class="flex">
+                  <p>{{ recetaDTO.calorias }}</p>
+                  <p class="ml-2">kcal</p>
+                </div>
               </div>
-            </div>
 
-            <div class="flex items-center mt-3 text-sm">
-              <p class="font-semibold">Publicado por:</p>
-            </div>
+              <div class="flex items-center mt-3 text-sm">
+                <p class="font-semibold">Publicado por:</p>
+              </div>
 
-            <div class="flex items-center mt-1 text-sm">
-              <div class="flex">
-                <img
-                  [src]="
+              <div class="flex items-center mt-1 text-sm">
+                <div class="flex">
+                  <img
+                    [src]="
                     recetaDTO.fotoPerfil
                       ? urlImages + recetaDTO.fotoPerfil
                       : '/default-profile-image.jpg'
                   "
-                  alt="Foto de perfil"
-                  class="rounded-3xl h-7 w-7 mr-2"
-                />
+                    alt="Foto de perfil"
+                    class="rounded-3xl h-7 w-7 mr-2"
+                  />
+                </div>
+                <p class="">{{ recetaDTO.autor }}</p>
               </div>
-              <p class="">{{ recetaDTO.autor }}</p>
+            </div>
+          </div>
+
+          <div class="p-10 lg:mt-0 -mt-14 flex flex-col w-full lg:w-3/5 text-justify">
+            <h3 class="text-lg font-semibold mb-2">Ingredientes:</h3>
+            <div class="ml-7 mb-4">
+              <ul class="list-disc text-sm">
+                @for (ingrediente of recetaDTO.ingredientes; track $index) {
+                  <li>{{ ingrediente.ingrediente | titlecase }}</li>
+                }
+              </ul>
+            </div>
+
+            <h3 class="text-lg font-semibold mb-2">Instrucciones:</h3>
+            <div class="ml-4">
+              <ol class="list-none">
+                <div>
+                  @for (instruccion of recetaDTO.instrucciones; track $index) {
+                    <p class="font-semibold">Paso {{ $index + 1 }}:</p>
+                    <p class="text-justify mb-2 text-sm">
+                      {{ instruccion.instruccion | titlecase }}
+                    </p>
+                  }
+                </div>
+              </ol>
             </div>
           </div>
         </div>
-
-        <div class="p-10 flex flex-col w-3/5 text-justify">
-          <h3 class="text-lg font-semibold mb-2">Ingredientes:</h3>
-          <div class="ml-7 mb-4">
-            <ul class="list-disc text-sm">
-              @for (ingrediente of recetaDTO.ingredientes; track $index) {
-              <li>{{ ingrediente.ingrediente | titlecase }}</li>
-              }
-            </ul>
-          </div>
-
-          <h3 class="text-lg font-semibold mb-2">Instrucciones:</h3>
-          <div class="ml-4">
-            <ol class="list-none">
-              <div>
-                @for (instruccion of recetaDTO.instrucciones; track $index) {
-                <p class="font-semibold">Paso {{ $index + 1 }}:</p>
-                <p class="text-justify mb-2 text-sm">
-                  {{ instruccion.instruccion | titlecase }}
-                </p>
-                }
-              </div>
-            </ol>
-          </div>
-        </div>
-      </div>
       }
     </div>
   </div>

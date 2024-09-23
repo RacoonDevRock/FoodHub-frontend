@@ -17,11 +17,12 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './crear-receta-creador.component.css'
 })
 export class CrearRecetaCreadorComponent {
+  step: number = 1; // Estado del paso actual
   titulo: string = '';
   descripcion: string = '';
-  tiempoCoccion: number = 0;
-  porciones: number = 0;
-  calorias: number = 0 ;
+  tiempoCoccion: number | null = null;
+  porciones: number | null = null;
+  calorias: number | null = null;
   categoria!: Categoria; // Valor por defecto
   imagen: string = '';
 
@@ -57,6 +58,12 @@ export class CrearRecetaCreadorComponent {
   }
 
   validarCamposYPublicar() {
+
+    if (this.tiempoCoccion == null || this.porciones == null || this.calorias == null || !this.titulo || !this.descripcion || !this.categoria) {
+      this.errorRegistro = true;
+      return;
+    }
+
     this.cargando = true;
     this.resetErrores();
 
@@ -102,24 +109,36 @@ export class CrearRecetaCreadorComponent {
     }
   }
 
+  // Ir al siguiente paso
+  nextStep() {
+    if (this.step < 3) {
+      this.step++;
+    }
+  }
+
+  // Volver al paso anterior
+  prevStep() {
+    if (this.step > 1) {
+      this.step--;
+    }
+  }
+
+  // Métodos para agregar y eliminar ingredientes
   agregarIngrediente() {
     this.ingredientes.push({ ingrediente: '' });
   }
 
   eliminarIngrediente(index: number) {
-    if (this.ingredientes.length > 1) {
-      this.ingredientes.splice(index, 1);
-    }
+    this.ingredientes.splice(index, 1);
   }
 
+  // Métodos para agregar y eliminar instrucciones
   agregarPaso() {
     this.instrucciones.push({ instruccion: '' });
   }
 
   eliminarPaso(index: number) {
-    if (this.instrucciones.length > 1) {
-      this.instrucciones.splice(index, 1);
-    }
+    this.instrucciones.splice(index, 1);
   }
 
   cerrarModalPublicado() {

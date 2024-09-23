@@ -111,6 +111,8 @@ export class CrearCuentaComponent {
 
     }, error => {
       console.error('Error al registrar:', error);
+
+      console.error('Error al registrar:', error.message);
       this.errorRegistro = true;
       this.mensajeError = error.error.message;
       this.cargando = false;

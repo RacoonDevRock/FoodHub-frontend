@@ -1,18 +1,18 @@
-<div class="flex flex-col min-h-full"> <!-- Ajuste en la estructura principal -->
+<div class="flex flex-col min-h-full">
   <!-- Contenedor de recetas -->
-  <div class="flex flex-wrap justify-start ml-7 flex-grow"> <!-- flex-grow aplicado aquí -->
-
-    @if(recipes.length === 0){
+  <div class="flex flex-wrap justify-start ml-7 flex-grow">
+    @if (recipes.length === 0) {
       <div class="text-center w-full h-full mt-10 py-60">
-        <p class="text-lg font-semibold">No hay ninguna receta de esta categoría ({{ categoria }}) por el momento</p>
+        <p class="text-lg font-semibold">
+          No hay ninguna receta de esta categoría ({{ categoria }}) por el momento
+        </p>
       </div>
     }
 
-
-
+    <!-- *ngFor para recorrer las recetas -->
     <div
       *ngFor="let recipe of recipes | paginate: { itemsPerPage: 6, currentPage: page }"
-      class="cursor-pointer card w-[calc(32%-20px)] h-[275px] shadow-lg transition-transform duration-300 ease-in-out mt-10 mr-5 ml-2 flex flex-col bg-white hover:scale-105"
+      class="cursor-pointer card w-full lg:w-[calc(32%-20px)] h-[275px] shadow-lg transition-transform duration-300 ease-in-out mt-10 mr-5 ml-2 flex flex-col bg-white hover:scale-105"
       (click)="verContenido(recipe)"
     >
       <img
@@ -29,7 +29,7 @@
   </div>
 
   <!-- Paginación en la parte inferior -->
-  <div class="pagination py-2 text-center mt-auto"> <!-- mt-auto para que quede al fondo -->
+  <div class="pagination py-2 text-center mt-auto">
     <pagination-controls
       (pageChange)="page = $event"
       previousLabel="Anterior"

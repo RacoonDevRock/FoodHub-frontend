@@ -8,11 +8,18 @@
 
     <div class="flex min-h-screen">
 
-      <div class="w-[20%] bg-black pt-5">
+
+      <div class="w-[20%] bg-black pt-5 lg:block hidden">
           <app-side-categorias />
       </div>
 
-      <div class="w-[80%]">
+
+      <div class="lg:w-[80%] w-[100%]">
+
+        <div class="lg:hidden">
+          <app-side-categorias-mv />
+        </div>
+
         <router-outlet />
       </div>
 

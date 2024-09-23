@@ -55,14 +55,14 @@ body {
 
 main {
   flex: 1;
-  padding: 60px;
+  padding: 10px;
 }
 
 form {
   display: flex;
   justify-content: space-between;
   background-color: #ffffff;
-  padding: 50px;
+  padding: 20px;
   border-radius: 10px;
   max-width: 1350px;
   margin: 0 auto;
@@ -83,9 +83,9 @@ form {
 }
 
 .column {
-  width: 33.33%;
+  width: 100%;
   background-color: white;
-  padding: 10px;
+  padding: 5px;
   flex: 1;
 }
 
@@ -167,6 +167,15 @@ textarea {
   margin-left: 5px;
 }
 
+.input-row .delete-button2 {
+  background-color: #fff;
+  color: #ff914d;
+  border: 1px solid #ff914d;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
 .input-row input {
   width: 340px;
   height: 50px;
@@ -182,7 +191,7 @@ textarea {
   border-radius: 50%;
   cursor: pointer;
   font-size: 16px;
-  margin-left: 150px;
+  margin-left: 170px;
   height: 38px;
   width: 38px;
   display: flex;
@@ -190,8 +199,30 @@ textarea {
   justify-content: center;
 }
 
+.add-button2,
+.delete-button2 {
+  background-color: #fff;
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 150px;
+  height: 38px;
+  width: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -15px;
+}
+
 .add-button:hover,
 .delete-button:hover {
+  background-color: #ff6340;
+}
+
+.add-button2:hover,
+.delete-button2:hover {
   background-color: #ff6340;
 }
 
@@ -206,6 +237,13 @@ textarea {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.button-container2 {
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+
 }
 
 .orange-button {
@@ -262,6 +300,15 @@ textarea {
   margin-top: 5px;
 }
 
+.add-button2 {
+  background-color: #fff;
+  color: #ff914d;
+  border: 1px solid #ff914d;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
 .input-container {
   display: flex;
   flex-direction: column;
@@ -278,3 +325,46 @@ textarea {
   text-align: justify;
   color: red;
 }
+
+#recipeForm {
+  max-height: 80vh; /* Limita la altura del formulario a un 80% del viewport */
+  overflow-y: auto; /* Agrega barra lateral si el contenido supera la altura */
+  padding-right: 15px; /* Agrega espacio para evitar que el contenido choque con la barra */
+
+}
+
+.next-button,
+.prev-button,
+.submit-button {
+  background-color: #ff914d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-right: 10px;
+}
+
+.next-button:hover,
+.prev-button:hover,
+.submit-button:hover {
+  background-color: #ff6340;
+}
+
+.step {
+  margin-bottom: 20px;
+}
+
+@media (min-width: 1024px) {
+  .column {
+    flex-direction: column;
+  }
+  main {
+    padding: 60px; /* Padding para pantallas lg y superiores */
+  }
+  .column {
+    padding: 10px;
+  }
+}
+

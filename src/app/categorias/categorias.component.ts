@@ -6,6 +6,7 @@ import {RouterOutlet} from "@angular/router";
 import {FooterComponent} from "../footer/footer.component";
 import {SideCategoriasComponent} from "./side-categorias/side-categorias.component";
 import {NgClass} from "@angular/common";
+import {AppSideCategoriasMvComponent} from "./side-categorias-mv/app-side-categorias-mv.component";
 
 @Component({
   selector: 'app-categorias',
@@ -16,7 +17,8 @@ import {NgClass} from "@angular/common";
     RouterOutlet,
     FooterComponent,
     SideCategoriasComponent,
-    NgClass
+    NgClass,
+    AppSideCategoriasMvComponent
   ],
   templateUrl: './categorias.component.html',
   styleUrl: './categorias.component.css'

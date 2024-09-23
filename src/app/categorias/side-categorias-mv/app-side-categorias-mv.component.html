@@ -1,0 +1,24 @@
+
+<!-- MENU PARA XS -->
+<nav class="flex flex-col px-6 py-6 lg:hidden" style="background: #000000">
+
+  <div class="flex flex-row justify-start">
+    <button class="bg-white font-bold px-3 py-1 rounded-lg" (click)="toggleDropdownxs()">☰</button>
+    <h2 class="text-white text-xl font-bold mt-0 ml-5">Categorías</h2>
+
+
+
+  </div>
+
+  @if(isDropdownOpenxs){
+    <div class="flex flex-col text-white">
+      <button class="border-2 font-bold px-8 py-2 rounded-lg mt-3 hover:text-black hover:bg-white" [routerLink]="['/categoria/desayuno']" >Desayuno</button>
+      <button class="border-2 font-bold px-8 py-2 rounded-lg mt-3 hover:text-black hover:bg-white" [routerLink]="['/categoria/almuerzo']" >Almuerzo</button>
+      <button class="border-2 font-bold px-8 py-2 rounded-lg mt-3 hover:text-black hover:bg-white" [routerLink]="['/categoria/cena']">Cena</button>
+      <button class="border-2 font-bold px-8 py-2 rounded-lg mt-3 hover:text-black hover:bg-white" [routerLink]="['/categoria/postres']" >Postres</button>
+      <button class="border-2 font-bold px-8 py-2 rounded-lg mt-3 hover:text-black hover:bg-white" [routerLink]="['/categoria/superavit']" >Superávit</button>
+      <button class="border-2 font-bold px-8 py-2 rounded-lg mt-3 hover:text-black hover:bg-white" [routerLink]="['/categoria/deficit']">Déficit</button>
+    </div>
+  }
+
+</nav>
