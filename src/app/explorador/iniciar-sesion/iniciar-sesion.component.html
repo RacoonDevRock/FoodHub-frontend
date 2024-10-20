@@ -7,14 +7,14 @@
 
       <form class="flex flex-col" (ngSubmit)="iniciarSesion()">
 
-        <input type="text" placeholder="Ingrese Correo de Colegiado *" [(ngModel)]="authDTO.identificador" name="identificador" required class="p-2 mb-4 border border-gray-300 rounded-xl">
+        <input maxlength="20" type="text" placeholder="Ingrese Correo de Colegiado *" [(ngModel)]="authDTO.identificador" name="identificador" required class="p-2 mb-4 border border-gray-300 rounded-xl">
 
         @if(errorIdentificador){
           <div class="text-start error-message text-red-500 text-sm -mt-3 mb-4 ml-2">{{ mensajeErrorIdentificador }}</div>
         }
 
 
-        <input type="password" placeholder="Ingrese Contraseña *" [(ngModel)]="authDTO.contrasenia" name="contrasenia" required class="p-2 mb-4 border border-gray-300 rounded-xl">
+        <input maxlength="15" type="password" placeholder="Ingrese Contraseña *" [(ngModel)]="authDTO.contrasenia" name="contrasenia" required class="p-2 mb-4 border border-gray-300 rounded-xl">
 
         @if(errorContrasenia){
           <div class="text-start error-message text-red-500 text-sm -mt-3 mb-4 ml-2">{{ mensajeErrorContrasenia }}</div>

@@ -18,7 +18,7 @@
       <form (ngSubmit)="registrarCreador()" class="flex flex-col">
 
         <!-- Nombres -->
-        <input type="text" placeholder="Ingrese sus Nombres *" id="nombre" required name="nombre" [(ngModel)]="creadorDTO.nombre"
+        <input maxlength="20" type="text" placeholder="Ingrese sus Nombres *" id="nombre" required name="nombre" [(ngModel)]="creadorDTO.nombre"
                class="p-2 mb-4 border border-gray-300 rounded-xl">
 
         @if(errorNombre){
@@ -27,7 +27,7 @@
 
 
         <!-- Apellido Paterno -->
-        <input type="text" placeholder="Ingrese Apellido Paterno *" id="apellidoPaterno" required name="apellidoPaterno" [(ngModel)]="creadorDTO.apellidoPaterno" class="p-2 mb-4 border border-gray-300 rounded-xl">
+        <input maxlength="20" type="text" placeholder="Ingrese Apellido Paterno *" id="apellidoPaterno" required name="apellidoPaterno" [(ngModel)]="creadorDTO.apellidoPaterno" class="p-2 mb-4 border border-gray-300 rounded-xl">
 
 
         @if(errorApellidoPaterno){
@@ -36,7 +36,7 @@
 
 
         <!-- Apellido Materno -->
-        <input type="text" placeholder="Ingrese Apellido Materno *" id="apellidoMaterno" required name="apellidoMaterno" [(ngModel)]="creadorDTO.apellidoMaterno" class="p-2 mb-4 border border-gray-300 rounded-xl">
+        <input maxlength="20" type="text" placeholder="Ingrese Apellido Materno *" id="apellidoMaterno" required name="apellidoMaterno" [(ngModel)]="creadorDTO.apellidoMaterno" class="p-2 mb-4 border border-gray-300 rounded-xl">
 
         @if(errorApellidoMaterno){
           <div class="error-message text-red-500 text-sm -mt-3 mb-3 ml-2">{{ mensajeErrorApellidoMaterno }}</div>
@@ -44,7 +44,7 @@
 
 
         <!-- Correo Electrónico -->
-        <input type="email" placeholder="Ingrese Correo Electrónico *" id="correoElectronico" required name="correoElectronico" [(ngModel)]="creadorDTO.correoElectronico" class="p-2 mb-4 border border-gray-300 rounded-xl">
+        <input maxlength="20" type="email" placeholder="Ingrese Correo Electrónico *" id="correoElectronico" required name="correoElectronico" [(ngModel)]="creadorDTO.correoElectronico" class="p-2 mb-4 border border-gray-300 rounded-xl">
 
         @if(errorCorreo){
           <div class="error-message text-red-500 text-sm -mt-3 mb-3 ml-2">{{ mensajeErrorCorreo }}</div>
@@ -52,14 +52,14 @@
 
 
         <!-- Contraseña -->
-        <input type="password" placeholder="********" id="contrasenia" required name="contrasenia" [(ngModel)]="creadorDTO.contrasenia" class="p-2 mb-4 border border-gray-300 rounded-xl">
+        <input maxlength="15" type="password" placeholder="********" id="contrasenia" required name="contrasenia" [(ngModel)]="creadorDTO.contrasenia" class="p-2 mb-4 border border-gray-300 rounded-xl">
 
          @if(errorContrasenia){
            <div class="error-message text-red-500 text-sm -mt-3 mb-3 ml-2">{{ mensajeErrorContrasenia }}</div>
          }
 
         <!-- Código de Colegiatura -->
-        <input type="text" placeholder="012345" maxlength="6" id="codigoColegiatura" required name="codigoColegiatura" [(ngModel)]="creadorDTO.codigoColegiatura" class="p-2 mb-4 border border-gray-300 rounded-xl">
+        <input maxlength="6" type="text" placeholder="012345" maxlength="6" id="codigoColegiatura" required name="codigoColegiatura" [(ngModel)]="creadorDTO.codigoColegiatura" class="p-2 mb-4 border border-gray-300 rounded-xl">
 
         @if(errorCodigoColegiatura){
           <div class="error-message text-red-500 text-sm -mt-3 mb-3 ml-2">{{ mensajeErrorCodigoColegiatura }}</div>

@@ -19,6 +19,7 @@ export class BodyCategoriaComponent implements OnInit {
   public urlImages: string = `${environment.apiUrl}/imagenes/`;
   public page!: number;
   public recipes: RecetaCategoriaDTO[] = [];
+  public mensajeError: string = '';
 
   constructor(
     private router: Router,
@@ -37,7 +38,8 @@ export class BodyCategoriaComponent implements OnInit {
         this.recipes = recetas;
       },
       (error) => {
-        console.error(`${error.name}: ${error.message}`);
+        console.error(`Error: ${error.error.message}`);
+        this.mensajeError = error.error?.message || 'Error desconocido';
       }
     );
   }

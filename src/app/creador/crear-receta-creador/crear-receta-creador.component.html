@@ -22,7 +22,7 @@
         [class.error]="errorRegistro"
         type="text"
         placeholder="Título *"
-        maxlength="70"
+        maxlength="100"
         required
         name="titulo"
         [(ngModel)]="titulo"
@@ -54,6 +54,7 @@
           [class.error]="errorRegistro"
           placeholder="Tiempo de Preparación *"
           required
+          maxlength="3"
           name="tiempoCoccion"
           [(ngModel)]="tiempoCoccion"
           [ngModelOptions]="{ standalone: true }"
@@ -71,6 +72,7 @@
           [class.error]="errorRegistro"
           placeholder="Cantidad de porciones *"
           required
+          maxlength="2"
           name="porciones"
           [(ngModel)]="porciones"
           [ngModelOptions]="{ standalone: true }"
@@ -138,7 +140,7 @@
               [ngModelOptions]="{ standalone: true }"
               [(ngModel)]="ingrediente.ingrediente"
               placeholder="Ingrediente Nº{{ $index + 1 }}"
-              maxlength="70"
+              maxlength="20"
               required
             />
             <button
@@ -168,7 +170,7 @@
             [(ngModel)]="instruccion.instruccion"
             placeholder="Paso Nº{{ $index + 1 }} *"
             rows="5"
-            maxlength="400"
+            maxlength="150"
           ></textarea>
             <button
               type="button"

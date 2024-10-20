@@ -4,7 +4,7 @@
     @if (recipes.length === 0) {
       <div class="text-center w-full h-full mt-10 py-60">
         <p class="text-lg font-semibold">
-          No hay ninguna receta de esta categoría ({{ categoria }}) por el momento
+          {{ mensajeError }}
         </p>
       </div>
     }

@@ -173,32 +173,43 @@ export class CrearRecetaCreadorComponent {
   // Validar todos los campos
   validarCampos(): boolean {
     let esValido = true;
-
-    if (!this.titulo) {
+  
+    // Validación de título
+    if (!this.titulo || this.titulo.trim().length === 0) {
       this.errores['titulo'] = 'El título es obligatorio.';
       esValido = false;
     }
-    if (!this.descripcion) {
+  
+    // Validación de descripción
+    if (!this.descripcion || this.descripcion.trim().length === 0) {
       this.errores['descripcion'] = 'La descripción es obligatoria.';
       esValido = false;
     }
-    if (!this.tiempoCoccion) {
-      this.errores['tiempoCoccion'] = 'El tiempo de cocción es obligatorio.';
+  
+    // Validación de tiempo de cocción (debe ser mayor que 0)
+    if (this.tiempoCoccion === null || this.tiempoCoccion <= 0) {
+      this.errores['tiempoCoccion'] = 'El tiempo de cocción es obligatorio y debe ser mayor que 0.';
       esValido = false;
     }
-    if (!this.porciones) {
-      this.errores['porciones'] = 'Las porciones son obligatorias.';
+  
+    // Validación de porciones (debe ser mayor que 0)
+    if (this.porciones === null || this.porciones <= 0) {
+      this.errores['porciones'] = 'Las porciones son obligatorias y deben ser mayores que 0.';
       esValido = false;
     }
-    if (!this.calorias) {
-      this.errores['calorias'] = 'Las calorías son obligatorias.';
+  
+    // Validación de calorías (debe ser mayor que 0)
+    if (this.calorias === null || this.calorias <= 0) {
+      this.errores['calorias'] = 'Las calorías son obligatorias y deben ser mayores que 0.';
       esValido = false;
     }
+  
+    // Validación de categoría
     if (!this.categoria) {
       this.errores['categoria'] = 'La categoría es obligatoria.';
       esValido = false;
     }
-
+  
     return esValido;
   }
 
@@ -238,8 +249,8 @@ export class CrearRecetaCreadorComponent {
       porciones: '',
       calorias: '',
       categoria: '',
-      ingredientes: [],
-      instrucciones: [],
+      ingredientes: '',
+      instrucciones: '',
       imagen: ''
     };
   }

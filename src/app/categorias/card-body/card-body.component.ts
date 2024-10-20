@@ -35,7 +35,7 @@ export class CardBodyComponent implements OnInit {
           this.recetaDTO = receta;
         },
         (error) => {
-          console.error(`${error.name}: ${error.message}`);
+          console.error(`Error: ${error.error.message}`);
         }
       );
     });
