@@ -68,7 +68,7 @@
         <p class="text-xs text-gray-400 -my-3 ml-2">Ejm: 0012345</p>
 
         <!-- Botón de enviar -->
-        <button type="submit" [disabled]="cargando" class="bg-[#ee8326] hover:bg-[#c76d21] text-white py-1 mt-5 w-32 mx-auto font-semibold text-lg rounded-2xl">
+        <button type="submit" [disabled]="cargando || !isOnline" class="bg-[#ee8326] hover:bg-[#c76d21] text-white py-1 mt-5 w-32 mx-auto font-semibold text-lg rounded-2xl">
          @if(!cargando){
            <span>Crear</span>
          } @else {

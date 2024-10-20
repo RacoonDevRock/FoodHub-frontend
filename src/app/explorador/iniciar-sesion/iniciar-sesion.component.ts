@@ -4,6 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { SharedService } from '../../services/shared.service';
 import { AuthService } from '../../services/auth.service';
 import { FormsModule } from '@angular/forms';
+import { ConnectionStatusService } from '../../services/connection-status.service';
 
 @Component({
   selector: 'app-iniciar-sesion',
@@ -13,11 +14,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './iniciar-sesion.component.css',
 })
 export class IniciarSesionComponent implements OnInit {
+  public authDTO: AuthDTO = { identificador: '', contrasenia: '' };
   public tipo: string = '';
-  public authDTO: AuthDTO = {
-    identificador: '',
-    contrasenia: '',
-  };
+  public isOnline: boolean = true;
 
   errorRegistro: boolean = false;
   errorIdentificador: boolean = false;
@@ -27,6 +26,7 @@ export class IniciarSesionComponent implements OnInit {
   mensajeErrorContrasenia: string = '';
 
   constructor(
+    private connectionStatusService: ConnectionStatusService,
     private authService: AuthService,
     private router: Router,
     private sharedService: SharedService
@@ -35,45 +35,81 @@ export class IniciarSesionComponent implements OnInit {
   ngOnInit(): void {
     this.tipo = 'vacio';
     this.sharedService.setTipo(this.tipo);
+
+      this.connectionStatusService.getConnectionStatus().subscribe((isOnline) => {
+        this.isOnline = isOnline;
+        if (!isOnline) {
+          console.log("datos guardados temporalmente")
+          this.guardarDatosEnLocalStorage();
+        }
+      })
+
+      this.loadFormData(); // Cargar datos guardados en localStorage al iniciar
   }
 
-  iniciarSesion(): void {
+  guardarDatosEnLocalStorage() {
+    const formData = { identificador: this.authDTO.identificador, contrasenia: this.authDTO.contrasenia };
+    localStorage.setItem('authFormData', JSON.stringify(formData));
+  }
+
+  loadFormData() {
+    const savedFormData = localStorage.getItem('authFormData');
+    if (savedFormData) {
+      const formData = JSON.parse(savedFormData);
+      this.authDTO = { ...this.authDTO, ...formData };
+    }
+  }
+
+  async iniciarSesion(): Promise<void> {
     this.resetErrores();
+
+    if (!this.validarCampos()) return;
+
     localStorage.removeItem('token');
 
+    try {
+      const response = await this.authService.iniciarSesionCreador(this.authDTO).toPromise();
+      this.tipo = 'creador';
+      this.sharedService.setTipo(this.tipo);
+      localStorage.setItem('token', response.token);
+      this.router.navigate(['/ingresar']);
+    } catch (error) {
+      this.manejarErrorSesion(error);
+    }
+  }
+
+  validarCampos(): boolean {
+    let esValido = true;
+
     if (!this.authDTO.identificador) {
-      this.errorIdentificador = true;
-      this.mensajeErrorIdentificador = 'El campo de correo o código de colegiado es obligatorio.*';
-    }else if (this.authDTO.identificador.length!=6 && !this.validarCorreo(this.authDTO.identificador)) {
-      this.errorIdentificador = true;
-      this.mensajeErrorIdentificador = 'El formato del correo electrónico es incorrecto.*';
-    }else if(this.authDTO.identificador.length==6 && !this.validarCodigoColegiatura(this.authDTO.identificador)) {
-      this.errorIdentificador = true;
-      this.mensajeErrorIdentificador = 'Ingrese un código de colegiatura válido.*';
+      this.setError('identificador', 'El campo de correo o código de colegiado es obligatorio.*');
+      esValido = false;
+    } else if (this.authDTO.identificador.length !== 6 && !this.validarCorreo(this.authDTO.identificador)) {
+      this.setError('identificador', 'El formato del correo electrónico es incorrecto.*');
+      esValido = false;
     }
 
     if (!this.authDTO.contrasenia) {
-      this.errorContrasenia = true;
-      this.mensajeErrorContrasenia = 'El campo de contraseña es obligatorio.*';
+      this.setError('contrasenia', 'El campo de contraseña es obligatorio.*');
+      esValido = false;
     }
 
-    this.authService.iniciarSesionCreador(this.authDTO).subscribe(
-      (response) => {
-        console.log('token', response)
-        this.tipo = 'creador';
-        this.sharedService.setTipo(this.tipo);
-        localStorage.setItem('token', response.token);
-        this.router.navigate(['/ingresar']);
-      },
-      (error) => {
-        console.error('Error al iniciar sesión:', error);
-        this.errorRegistro = true;
-        if(!this.errorIdentificador&&!this.errorContrasenia){
-          this.mensajeError = error.error.message;
+    return esValido;
+  }
+  setError(campo: string, mensaje: string): void {
+    if (campo === 'identificador') {
+      this.errorIdentificador = true;
+      this.mensajeErrorIdentificador = mensaje;
+    } else if (campo === 'contrasenia') {
+      this.errorContrasenia = true;
+      this.mensajeErrorContrasenia = mensaje;
+    }
+  }
 
-        }
-      }
-    );
+  manejarErrorSesion(error: any): void {
+    console.error('Error al iniciar sesión:', error);
+    this.errorRegistro = true;
+    this.mensajeError = error.error?.message || 'Error al iniciar sesión';
   }
 
   resetErrores(): void {
@@ -85,13 +121,9 @@ export class IniciarSesionComponent implements OnInit {
     this.mensajeErrorContrasenia = '';
   }
 
+
   validarCorreo(correo: string): boolean {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(correo);
-  }
-
-  validarCodigoColegiatura(codigo: string): boolean {
-    const codigoRegex = /^[0-9]{6}$/;
-    return codigoRegex.test(codigo);
   }
 }

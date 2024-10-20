@@ -3,16 +3,14 @@ import { CreadorDTO } from '../../interfaces/CreadorDTO';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
+import { ConnectionStatusService } from '../../services/connection-status.service';
 
 @Component({
   selector: 'app-crear-cuenta',
   standalone: true,
-  imports: [
-    FormsModule
-  ],
+  imports: [FormsModule],
   templateUrl: './crear-cuenta.component.html',
-  styleUrl: './crear-cuenta.component.css'
+  styleUrl: './crear-cuenta.component.css',
 })
 export class CrearCuentaComponent {
   mostrarModalCuentaCreada: boolean = false;
@@ -36,6 +34,7 @@ export class CrearCuentaComponent {
   mensajeErrorCodigoColegiatura: string = '';
 
   cargando: boolean = false;
+  isOnline: boolean = true;
 
   creadorDTO: CreadorDTO = {
     nombre: '',
@@ -43,10 +42,50 @@ export class CrearCuentaComponent {
     apellidoMaterno: '',
     correoElectronico: '',
     contrasenia: '',
-    codigoColegiatura: ''
+    codigoColegiatura: '',
   };
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private connectionStatusService: ConnectionStatusService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    this.connectionStatusService.getConnectionStatus().subscribe((isOnline) => {
+      this.isOnline = isOnline;
+      if (!isOnline) {
+        console.log("datos guardados temporalmente")
+        this.guardarDatosEnLocalStorage();
+      }
+    })
+    this.loadFormData(); // Cargar datos guardados en localStorage al iniciar
+  }
+
+  guardarDatosEnLocalStorage() {
+    const formData = {
+      nombre: this.creadorDTO.nombre,
+      apellidoPaterno: this.creadorDTO.apellidoPaterno,
+      apellidoMaterno: this.creadorDTO.apellidoMaterno,
+      correoElectronico: this.creadorDTO.correoElectronico,
+      contrasenia: this.creadorDTO.contrasenia,
+      codigoColegiatura: this.creadorDTO.codigoColegiatura,
+    };
+    localStorage.setItem('registerFormData', JSON.stringify(formData));
+  }
+
+  loadFormData() {
+    const savedFormData = localStorage.getItem('registerFormData');
+    if (savedFormData) {
+      const formData = JSON.parse(savedFormData);
+      this.creadorDTO.nombre = formData.nombre || '',
+      this.creadorDTO.apellidoPaterno = formData.apellidoPaterno || '',
+      this.creadorDTO.apellidoMaterno = formData.apellidoMaterno || '',
+      this.creadorDTO.correoElectronico = formData.correoElectronico || '',
+      this.creadorDTO.contrasenia = formData.contrasenia || '',
+      this.creadorDTO.codigoColegiatura = formData.codigoColegiatura || ''
+    }
+  }
 
   registrarCreador(): void {
     this.cargando = true;
@@ -73,52 +112,66 @@ export class CrearCuentaComponent {
       this.mensajeErrorCorreo = 'El correo electrónico es obligatorio.*';
     } else if (!this.validarCorreo(this.creadorDTO.correoElectronico)) {
       this.errorCorreo = true;
-      this.mensajeErrorCorreo = 'El formato del correo electrónico es incorrecto.*';
+      this.mensajeErrorCorreo =
+        'El formato del correo electrónico es incorrecto.*';
     }
 
     if (!this.creadorDTO.contrasenia) {
       this.errorContrasenia = true;
       this.mensajeErrorContrasenia = 'La contraseña es obligatoria.';
-    } else if (this.creadorDTO.contrasenia.length < 8 || !/[A-Z]/.test(this.creadorDTO.contrasenia)) {
+    } else if (
+      this.creadorDTO.contrasenia.length < 8 ||
+      !/[A-Z]/.test(this.creadorDTO.contrasenia)
+    ) {
       this.errorContrasenia = true;
-      this.mensajeErrorContrasenia = 'La contraseña debe tener al menos 8 caracteres y una mayúscula.*';
+      this.mensajeErrorContrasenia =
+        'La contraseña debe tener al menos 8 caracteres y una mayúscula.*';
     }
 
     if (!this.creadorDTO.codigoColegiatura) {
       this.errorCodigoColegiatura = true;
-      this.mensajeErrorCodigoColegiatura = 'El código de colegiatura es obligatorio.*';
-    } else if (!this.validarCodigoColegiatura(this.creadorDTO.codigoColegiatura)) {
+      this.mensajeErrorCodigoColegiatura =
+        'El código de colegiatura es obligatorio.*';
+    } else if (
+      !this.validarCodigoColegiatura(this.creadorDTO.codigoColegiatura)
+    ) {
       this.errorCodigoColegiatura = true;
-      this.mensajeErrorCodigoColegiatura = 'Ingrese un código de colegiatura válido.*';
+      this.mensajeErrorCodigoColegiatura =
+        'Ingrese un código de colegiatura válido.*';
     }
 
-
-    if (this.errorNombre || this.errorApellidoPaterno || this.errorApellidoMaterno || this.errorCorreo || this.errorContrasenia || this.errorCodigoColegiatura) {
+    if (
+      this.errorNombre ||
+      this.errorApellidoPaterno ||
+      this.errorApellidoMaterno ||
+      this.errorCorreo ||
+      this.errorContrasenia ||
+      this.errorCodigoColegiatura
+    ) {
       this.cargando = false;
       return;
     }
 
     // Llamada al servicio de autenticación
-    this.authService.registrarCreador(this.creadorDTO).subscribe((response) => {
+    this.authService.registrarCreador(this.creadorDTO).subscribe(
+      (response) => {
+        console.log('Respuesta del servidor:', response);
 
-      console.log('Respuesta del servidor:', response);
+        const exito = this.validarYCrearCuenta();
+        if (exito) {
+          this.mostrarModalCuentaCreada = true;
+        }
+        this.cargando = false;
+      },
+      (error) => {
+        console.error('Error al registrar:', error);
 
-      const exito = this.validarYCrearCuenta();
-      if (exito) {
-        this.mostrarModalCuentaCreada = true;
+        console.error('Error al registrar:', error.message);
+        this.errorRegistro = true;
+        this.mensajeError = error.error.message;
+        this.cargando = false;
       }
-      this.cargando = false;
-
-    }, error => {
-      console.error('Error al registrar:', error);
-
-      console.error('Error al registrar:', error.message);
-      this.errorRegistro = true;
-      this.mensajeError = error.error.message;
-      this.cargando = false;
-    });
-
-
+    );
   }
 
   private validarYCrearCuenta(): boolean {
@@ -129,16 +182,15 @@ export class CrearCuentaComponent {
     this.mostrarModalCuentaCreada = false;
     this.router.navigate(['/iniciarSesion']);
     this.resetCampos();
-
   }
 
-  resetCampos(){
-    this.creadorDTO.nombre = "";
-    this.creadorDTO.apellidoMaterno = "";
-    this.creadorDTO.apellidoPaterno = "";
-    this.creadorDTO.correoElectronico = "";
-    this.creadorDTO.contrasenia = "";
-    this.creadorDTO.codigoColegiatura = "";
+  resetCampos() {
+    this.creadorDTO.nombre = '';
+    this.creadorDTO.apellidoMaterno = '';
+    this.creadorDTO.apellidoPaterno = '';
+    this.creadorDTO.correoElectronico = '';
+    this.creadorDTO.contrasenia = '';
+    this.creadorDTO.codigoColegiatura = '';
   }
 
   resetErrores(): void {
@@ -157,8 +209,6 @@ export class CrearCuentaComponent {
     this.mensajeErrorCorreo = '';
     this.mensajeErrorContrasenia = '';
     this.mensajeErrorCodigoColegiatura = '';
-
-
   }
 
   validarCorreo(correo: string): boolean {
