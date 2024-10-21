@@ -3,7 +3,6 @@ import { CreadorDTO } from '../../interfaces/CreadorDTO';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { ConnectionStatusService } from '../../services/connection-status.service';
 
 @Component({
   selector: 'app-crear-cuenta',
@@ -34,7 +33,6 @@ export class CrearCuentaComponent {
   mensajeErrorCodigoColegiatura: string = '';
 
   cargando: boolean = false;
-  isOnline: boolean = true;
 
   creadorDTO: CreadorDTO = {
     nombre: '',
@@ -46,46 +44,9 @@ export class CrearCuentaComponent {
   };
 
   constructor(
-    private connectionStatusService: ConnectionStatusService,
     private authService: AuthService,
     private router: Router
   ) {}
-
-  ngOnInit(): void {
-    this.connectionStatusService.getConnectionStatus().subscribe((isOnline) => {
-      this.isOnline = isOnline;
-      if (!isOnline) {
-        console.log("datos guardados temporalmente")
-        this.guardarDatosEnLocalStorage();
-      }
-    })
-    this.loadFormData(); // Cargar datos guardados en localStorage al iniciar
-  }
-
-  guardarDatosEnLocalStorage() {
-    const formData = {
-      nombre: this.creadorDTO.nombre,
-      apellidoPaterno: this.creadorDTO.apellidoPaterno,
-      apellidoMaterno: this.creadorDTO.apellidoMaterno,
-      correoElectronico: this.creadorDTO.correoElectronico,
-      contrasenia: this.creadorDTO.contrasenia,
-      codigoColegiatura: this.creadorDTO.codigoColegiatura,
-    };
-    localStorage.setItem('registerFormData', JSON.stringify(formData));
-  }
-
-  loadFormData() {
-    const savedFormData = localStorage.getItem('registerFormData');
-    if (savedFormData) {
-      const formData = JSON.parse(savedFormData);
-      this.creadorDTO.nombre = formData.nombre || '',
-      this.creadorDTO.apellidoPaterno = formData.apellidoPaterno || '',
-      this.creadorDTO.apellidoMaterno = formData.apellidoMaterno || '',
-      this.creadorDTO.correoElectronico = formData.correoElectronico || '',
-      this.creadorDTO.contrasenia = formData.contrasenia || '',
-      this.creadorDTO.codigoColegiatura = formData.codigoColegiatura || ''
-    }
-  }
 
   registrarCreador(): void {
     this.cargando = true;
@@ -172,6 +133,16 @@ export class CrearCuentaComponent {
         this.cargando = false;
       }
     );
+  }
+
+  validarContrasenia(contrasenia: string) {
+    if (/\s/.test(contrasenia)) {
+      this.errorContrasenia = true;
+      this.mensajeErrorContrasenia = 'La contraseña no debe contener espacios.';
+    } else {
+      this.errorContrasenia = false;
+      this.mensajeErrorContrasenia = '';
+    }
   }
 
   private validarYCrearCuenta(): boolean {

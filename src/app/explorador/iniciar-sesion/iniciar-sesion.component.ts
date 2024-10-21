@@ -4,7 +4,6 @@ import { Router, RouterLink } from '@angular/router';
 import { SharedService } from '../../services/shared.service';
 import { AuthService } from '../../services/auth.service';
 import { FormsModule } from '@angular/forms';
-import { ConnectionStatusService } from '../../services/connection-status.service';
 
 @Component({
   selector: 'app-iniciar-sesion',
@@ -16,7 +15,6 @@ import { ConnectionStatusService } from '../../services/connection-status.servic
 export class IniciarSesionComponent implements OnInit {
   public authDTO: AuthDTO = { identificador: '', contrasenia: '' };
   public tipo: string = '';
-  public isOnline: boolean = true;
 
   errorRegistro: boolean = false;
   errorIdentificador: boolean = false;
@@ -26,7 +24,6 @@ export class IniciarSesionComponent implements OnInit {
   mensajeErrorContrasenia: string = '';
 
   constructor(
-    private connectionStatusService: ConnectionStatusService,
     private authService: AuthService,
     private router: Router,
     private sharedService: SharedService
@@ -35,29 +32,6 @@ export class IniciarSesionComponent implements OnInit {
   ngOnInit(): void {
     this.tipo = 'vacio';
     this.sharedService.setTipo(this.tipo);
-
-      this.connectionStatusService.getConnectionStatus().subscribe((isOnline) => {
-        this.isOnline = isOnline;
-        if (!isOnline) {
-          console.log("datos guardados temporalmente")
-          this.guardarDatosEnLocalStorage();
-        }
-      })
-
-      this.loadFormData(); // Cargar datos guardados en localStorage al iniciar
-  }
-
-  guardarDatosEnLocalStorage() {
-    const formData = { identificador: this.authDTO.identificador, contrasenia: this.authDTO.contrasenia };
-    localStorage.setItem('authFormData', JSON.stringify(formData));
-  }
-
-  loadFormData() {
-    const savedFormData = localStorage.getItem('authFormData');
-    if (savedFormData) {
-      const formData = JSON.parse(savedFormData);
-      this.authDTO = { ...this.authDTO, ...formData };
-    }
   }
 
   async iniciarSesion(): Promise<void> {
@@ -71,7 +45,7 @@ export class IniciarSesionComponent implements OnInit {
       const response = await this.authService.iniciarSesionCreador(this.authDTO).toPromise();
       this.tipo = 'creador';
       this.sharedService.setTipo(this.tipo);
-      localStorage.setItem('token', response.token);
+      // localStorage.setItem('token', response.token);
       this.router.navigate(['/ingresar']);
     } catch (error) {
       this.manejarErrorSesion(error);
@@ -96,6 +70,17 @@ export class IniciarSesionComponent implements OnInit {
 
     return esValido;
   }
+
+  validarContrasenia(contrasenia: string) {
+    if (/\s/.test(contrasenia)) {
+      this.errorContrasenia = true;
+      this.mensajeErrorContrasenia = 'La contraseña no debe contener espacios.';
+    } else {
+      this.errorContrasenia = false;
+      this.mensajeErrorContrasenia = '';
+    }
+  }
+
   setError(campo: string, mensaje: string): void {
     if (campo === 'identificador') {
       this.errorIdentificador = true;

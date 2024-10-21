@@ -52,7 +52,7 @@
 
 
         <!-- Contraseña -->
-        <input maxlength="15" type="password" placeholder="********" id="contrasenia" required name="contrasenia" [(ngModel)]="creadorDTO.contrasenia" class="p-2 mb-4 border border-gray-300 rounded-xl">
+        <input maxlength="15" type="password" placeholder="********" id="contrasenia" required name="contrasenia" [(ngModel)]="creadorDTO.contrasenia" class="p-2 mb-4 border border-gray-300 rounded-xl" (ngModelChange)="validarContrasenia($event)">
 
          @if(errorContrasenia){
            <div class="error-message text-red-500 text-sm -mt-3 mb-3 ml-2">{{ mensajeErrorContrasenia }}</div>
@@ -68,7 +68,7 @@
         <p class="text-xs text-gray-400 -my-3 ml-2">Ejm: 0012345</p>
 
         <!-- Botón de enviar -->
-        <button type="submit" [disabled]="cargando || !isOnline" class="bg-[#ee8326] hover:bg-[#c76d21] text-white py-1 mt-5 w-32 mx-auto font-semibold text-lg rounded-2xl">
+        <button type="submit" [disabled]="cargando" class="bg-[#ee8326] hover:bg-[#c76d21] text-white py-1 mt-5 w-32 mx-auto font-semibold text-lg rounded-2xl">
          @if(!cargando){
            <span>Crear</span>
          } @else {

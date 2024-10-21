@@ -14,7 +14,7 @@
         }
 
 
-        <input maxlength="15" type="password" placeholder="Ingrese Contraseña *" [(ngModel)]="authDTO.contrasenia" name="contrasenia" required class="p-2 mb-4 border border-gray-300 rounded-xl">
+        <input maxlength="15" type="password" placeholder="Ingrese Contraseña *" [(ngModel)]="authDTO.contrasenia" name="contrasenia" required class="p-2 mb-4 border border-gray-300 rounded-xl" (ngModelChange)="validarContrasenia($event)">
 
         @if(errorContrasenia){
           <div class="text-start error-message text-red-500 text-sm -mt-3 mb-4 ml-2">{{ mensajeErrorContrasenia }}</div>
@@ -23,7 +23,7 @@
         <p class="obligatorio-texto text-xs text-gray-500 mt-2 text-center mr-2">* Los campos obligatorios deben ser completados</p>
 
 
-        <button type="submit" [disabled]="!isOnline" class="bg-[#ee8326] hover:bg-[#c76d21] text-white py-1 mt-5 w-48 mx-auto font-semibold text-lg rounded-2xl">
+        <button type="submit" class="bg-[#ee8326] hover:bg-[#c76d21] text-white py-1 mt-5 w-48 mx-auto font-semibold text-lg rounded-2xl">
           Ingresar
         </button>
 

@@ -26,18 +26,22 @@ export default class VerifyAccountComponent {
     private authService: AuthService
   ) {}
 
+  ngOnInit() {
+    this.verificarCuenta();
+  }
+
   verificarCuenta(): void {
     this.route.params.subscribe((params) => {
       const token = params['token'];
 
       this.authService.confirmation(token).subscribe(
         (response) => {
-          console.log('Response', response);
+          console.log('Cuenta confirmada', response);
           // Aquí puedes redirigir a una página de éxito o mostrar un mensaje al usuario
         },
         (error) => {
           console.error('Error al confirmar cuenta:', error);
-          this.messageError = error.error.message;
+          this.messageError = 'No se pudo confirmar la cuenta.';
           // Aquí puedes redirigir a una página de error o mostrar un mensaje al usuario
         }
       );

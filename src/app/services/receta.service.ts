@@ -25,18 +25,17 @@ export class RecetaService {
     // Añadir el archivo de imagen al FormData
     formData.append('imagen', file);
   
-    return this.http.post<any>(`${this.baseUrl}/crear`, formData);
+    return this.http.post<any>(`${this.baseUrl}/crear`, formData, { withCredentials: true });
   }
 
   mostrarRecetasPorCategoria(
     categoria: string
   ): Observable<RecetaCategoriaDTO[]> {
     return this.http.get<RecetaCategoriaDTO[]>(
-      `${this.baseUrl}/recetas?categoria=${categoria}`
-    );
+      `${this.baseUrl}/recetas?categoria=${categoria}`, { withCredentials: true });
   }
 
   verReceta(idReceta: number): Observable<RecetaBodyDTO> {
-    return this.http.get<RecetaBodyDTO>(`${this.baseUrl}/${idReceta}`);
+    return this.http.get<RecetaBodyDTO>(`${this.baseUrl}/${idReceta}`, { withCredentials: true });
   }
 }

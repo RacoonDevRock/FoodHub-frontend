@@ -12,14 +12,14 @@ export class CreadorService {
   constructor(private http: HttpClient) {}
 
   obtenerCantidadRecetasCreadas(): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/cantidadRecetas`);
+    return this.http.get<any>(`${this.baseUrl}/cantidadRecetas`, { withCredentials: true });
   }
 
   verPerfil(): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/perfil`);
+    return this.http.get<any>(`${this.baseUrl}/perfil`, { withCredentials: true });
   }
 
   actualizarFotoPerfil(formData: FormData): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/actualizarFotoPerfil`, formData);
+    return this.http.post<any>(`${this.baseUrl}/actualizarFotoPerfil`, formData, { withCredentials: true });
   }
 }
