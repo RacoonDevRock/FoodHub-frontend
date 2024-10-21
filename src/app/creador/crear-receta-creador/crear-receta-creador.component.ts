@@ -33,7 +33,7 @@ export class CrearRecetaCreadorComponent {
   errorRegistro: boolean = false;
   cargando: boolean = false;
   isOnline: boolean = true;
-  
+
   errores: Record<string, any> = {
     titulo: '',
     descripcion: '',
@@ -109,9 +109,9 @@ export class CrearRecetaCreadorComponent {
 
     // Validar campos
     if (!this.validarCampos()) return;
-    
+
     this.cargando = true;
-    
+
 
     const nuevaReceta: RecetaDTO = {
       titulo: this.titulo,
@@ -173,43 +173,53 @@ export class CrearRecetaCreadorComponent {
   // Validar todos los campos
   validarCampos(): boolean {
     let esValido = true;
-  
+
     // Validación de título
     if (!this.titulo || this.titulo.trim().length === 0) {
       this.errores['titulo'] = 'El título es obligatorio.';
       esValido = false;
     }
-  
+
     // Validación de descripción
     if (!this.descripcion || this.descripcion.trim().length === 0) {
       this.errores['descripcion'] = 'La descripción es obligatoria.';
       esValido = false;
     }
-  
+
     // Validación de tiempo de cocción (debe ser mayor que 0)
     if (this.tiempoCoccion === null || this.tiempoCoccion <= 0) {
       this.errores['tiempoCoccion'] = 'El tiempo de cocción es obligatorio y debe ser mayor que 0.';
       esValido = false;
     }
-  
+
     // Validación de porciones (debe ser mayor que 0)
     if (this.porciones === null || this.porciones <= 0) {
       this.errores['porciones'] = 'Las porciones son obligatorias y deben ser mayores que 0.';
       esValido = false;
     }
-  
+
     // Validación de calorías (debe ser mayor que 0)
     if (this.calorias === null || this.calorias <= 0) {
       this.errores['calorias'] = 'Las calorías son obligatorias y deben ser mayores que 0.';
       esValido = false;
     }
-  
+
     // Validación de categoría
     if (!this.categoria) {
       this.errores['categoria'] = 'La categoría es obligatoria.';
       esValido = false;
     }
-  
+
+    if (!this.ingredientes || this.ingredientes.length === 0 || this.ingredientes.some(ingrediente => ingrediente.ingrediente.trim().length === 0)) {
+      this.errores['ingredientes'] = 'No puede dejar ingredientes en blanco.';
+      esValido = false;
+    }
+
+    if (!this.instrucciones || this.instrucciones.length === 0 || this.instrucciones.some(instruccion => instruccion.instruccion.trim().length === 0)) {
+      this.errores['instrucciones'] = 'No puede dejar instrucciones en blanco.';
+      esValido = false;
+    }
+
     return esValido;
   }
 

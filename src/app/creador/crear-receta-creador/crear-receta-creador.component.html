@@ -29,8 +29,9 @@
         [ngModelOptions]="{ standalone: true }"
       />
 
+
       @if (errores['titulo']) {
-        <div class="text-start error-message text-red-500 text-sm -mt-3 mb-4 ml-2">{{ errores['titulo'] }}</div>
+        <div class="text-start error-message text-red-500 text-sm -mt-6 mb-4 ml-2">{{ errores['titulo'] }}</div>
       }
 
       <textarea
@@ -40,12 +41,13 @@
         maxlength="250"
         required
         name="descripcion"
+        class=""
         [(ngModel)]="descripcion"
         [ngModelOptions]="{ standalone: true }"
       ></textarea>
 
       @if (errores['descripcion']) {
-        <div class="text-start error-message text-red-500 text-sm -mt-3 mb-4 ml-2">{{ errores['descripcion'] }}</div>
+        <div class="text-start error-message text-red-500 text-sm -mt-5 mb-6 ml-2">{{ errores['descripcion'] }}</div>
       }
 
       <div class="input-with-addon">
@@ -63,7 +65,7 @@
       </div>
 
       @if (errores['tiempoCoccion']) {
-        <div class="text-start error-message text-red-500 text-sm -mt-3 mb-4 ml-2">{{ errores['tiempoCoccion'] }}</div>
+        <div class="text-start error-message text-red-500 text-sm -mt-7 mb-6 ml-2">{{ errores['tiempoCoccion'] }}</div>
       }
 
       <div class="input-with-addon">
@@ -81,7 +83,7 @@
       </div>
 
       @if (errores['porciones']) {
-        <div class="text-start error-message text-red-500 text-sm -mt-3 mb-4 ml-2">{{ errores['porciones'] }}</div>
+        <div class="text-start error-message text-red-500 text-sm -mt-7 mb-6 ml-2">{{ errores['porciones'] }}</div>
       }
 
       <div class="input-with-addon">
@@ -98,7 +100,7 @@
       </div>
 
       @if (errores['calorias']) {
-        <div class="text-start error-message text-red-500 text-sm -mt-3 mb-4 ml-2">{{ errores['calorias'] }}</div>
+        <div class="text-start error-message text-red-500 text-sm -mt-7  ml-2">{{ errores['calorias'] }}</div>
       }
 
       <div class="input-with-text">
@@ -124,7 +126,7 @@
       </div>
 
       @if (errores['categoria']) {
-        <div class="text-start error-message text-red-500 text-sm -mt-3 mb-4 ml-2">{{ errores['categoria'] }}</div>
+        <div class="text-start error-message text-red-500 text-sm -mt-7 mb-6 ml-2">{{ errores['categoria'] }}</div>
       }
     </div>
 
@@ -156,7 +158,14 @@
       <button type="button" class="add-button2" (click)="agregarIngrediente()">
         +
       </button>
+
+      @if (errores['ingredientes']) {
+        <div class="text-start error-message text-red-500 text-sm mt-5 mb-4 ml-2">{{ errores['ingredientes'] }}</div>
+      }
+
     </div>
+
+
 
     <div class="column w-full lg:w-1/3 p-4">
       <h3>Escribe las instrucciones:</h3>
@@ -185,6 +194,10 @@
       <button type="button" class="add-button" (click)="agregarPaso()">
         +
       </button>
+
+      @if (errores['instrucciones']) {
+        <div class="text-start error-message text-red-500 text-sm mt-5 mb-4 ml-2">{{ errores['instrucciones'] }}</div>
+      }
     </div>
   </form>
 

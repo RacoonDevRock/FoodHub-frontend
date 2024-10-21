@@ -18,7 +18,7 @@
       <form (ngSubmit)="registrarCreador()" class="flex flex-col">
 
         <!-- Nombres -->
-        <input maxlength="20" type="text" placeholder="Ingrese sus Nombres *" id="nombre" required name="nombre" [(ngModel)]="creadorDTO.nombre"
+        <input maxlength="30" type="text" placeholder="Ingrese sus Nombres *" id="nombre" required name="nombre" [(ngModel)]="creadorDTO.nombre"
                class="p-2 mb-4 border border-gray-300 rounded-xl">
 
         @if(errorNombre){
@@ -44,7 +44,7 @@
 
 
         <!-- Correo Electrónico -->
-        <input maxlength="20" type="email" placeholder="Ingrese Correo Electrónico *" id="correoElectronico" required name="correoElectronico" [(ngModel)]="creadorDTO.correoElectronico" class="p-2 mb-4 border border-gray-300 rounded-xl">
+        <input maxlength="30" type="email" placeholder="Ingrese Correo Electrónico *" id="correoElectronico" required name="correoElectronico" [(ngModel)]="creadorDTO.correoElectronico" class="p-2 mb-4 border border-gray-300 rounded-xl">
 
         @if(errorCorreo){
           <div class="error-message text-red-500 text-sm -mt-3 mb-3 ml-2">{{ mensajeErrorCorreo }}</div>

@@ -34,10 +34,10 @@ export class CategoriasComponent implements OnInit {
   ngOnInit() {
     this.tipo = this.sharedService.getTipo();
     console.log('tipo de muestra: ', this.tipo);
-    if (this.tipo === 'creador') {
-      this.header = 2;
-    } else {
+    if (this.tipo !== 'creador') {
       this.header = 1;
+    } else {
+      this.header = 2;
     }
   }
 }
