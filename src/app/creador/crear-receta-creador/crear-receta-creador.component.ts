@@ -7,6 +7,7 @@ import { RecetaService } from '../../services/receta.service';
 import { RecetaDTO } from '../../interfaces/RecetaDTO';
 import { FormsModule } from '@angular/forms';
 import { ConnectionStatusService } from '../../services/connection-status.service';
+import { catchError, of, retry } from 'rxjs';
 
 @Component({
   selector: 'app-crear-receta-creador',
@@ -127,15 +128,33 @@ export class CrearRecetaCreadorComponent {
     };
 
     if (this.selectedFile) {
-      this.recetaService.crearReceta(nuevaReceta, this.selectedFile).subscribe(
-        (response: any) => {
-          localStorage.removeItem('recetaFormData');
-          this.mostrarModalPublicado = true;
-          this.errorRegistro = false;
+      this.recetaService.crearReceta(nuevaReceta, this.selectedFile).pipe(
+        retry(3),
+        catchError((error) => {
+          if (error.status === 400 && error?.error?.message === 'El archivo de imagen está vacío') {
+            this.errores['imagen'] = 'El archivo de imagen está vacío.';
+          } else if (error.status === 415 && error?.error?.message === 'El archivo no es una imagen válida') {
+            this.errores['imagen'] = 'Formato de imagen no válido. Solo se permiten JPEG y PNG.';
+          } else if (error.status === 500 && error?.error?.message === 'Error al guardar la foto') {
+            this.errores['imagen'] = 'Ocurrió un error al guardar la imagen. Inténtelo de nuevo más tarde.';
+          } else {
+            this.errores['imagen'] = 'Ocurrió un error inesperado al subir la imagen.';
+          }
+          this.errorRegistro = true;
           this.cargando = false;
+
+          return of(null);
+        })
+      ).subscribe(
+        (response: any) => {
+          if (response !== null) {
+            localStorage.removeItem('recetaFormData');
+            this.mostrarModalPublicado = true;
+            this.errorRegistro = false;
+            this.cargando = false;
+          }
         },
-        (error) => {
-          this.manejarErrorImagen(error);
+        () => {
           this.errorRegistro = true;
           this.cargando = false;
         }
@@ -144,12 +163,6 @@ export class CrearRecetaCreadorComponent {
       this.errores['imagen'] = 'Debe seleccionar una imagen.';
       this.errorRegistro = true;
       this.cargando = false;
-    }
-  }
-
-  manejarErrorImagen(error: any) {
-    if (error.message.includes('imagen')) {
-      this.errores['imagen'] = 'Error al subir la imagen, pero puede continuar creando la receta.';
     }
   }
 

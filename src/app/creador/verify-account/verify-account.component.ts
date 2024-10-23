@@ -19,7 +19,8 @@ import { IniciarSesionComponent } from '../../explorador/iniciar-sesion/iniciar-
   styleUrl: './verify-account.component.css',
 })
 export default class VerifyAccountComponent {
-  public messageError: string = '';
+  public expired!: boolean;
+  public errorMessage: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -37,12 +38,19 @@ export default class VerifyAccountComponent {
       this.authService.confirmation(token).subscribe(
         (response) => {
           console.log('Cuenta confirmada', response);
-          // Aquí puedes redirigir a una página de éxito o mostrar un mensaje al usuario
+          this.expired = false;
         },
         (error) => {
-          console.error('Error al confirmar cuenta:', error);
-          this.messageError = 'No se pudo confirmar la cuenta.';
-          // Aquí puedes redirigir a una página de error o mostrar un mensaje al usuario
+          console.error('Error al confirmar cuenta:', error.error.message);
+          this.expired = true;
+          
+           if (error.status === 409) {
+            this.errorMessage = "Esta cuenta ya ha sido confirmada.";
+          } else if (error.status === 404) {
+            this.errorMessage = "El tiempo de confirmación ha expirado. Por favor, intente registrarse nuevamente.";
+          } else {
+            this.errorMessage = "Se ha producido un error al confirmar la cuenta. Por favor, intente nuevamente.";
+          }
         }
       );
     });
