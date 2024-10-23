@@ -23,6 +23,7 @@ export class CrearRecetaCreadorComponent {
   porciones: number = 0;
   calorias: number = 0;
   categoria!: Categoria;
+
   imagen: string = '';
 
   ingredientes: IngredienteDTO[] = [{ ingrediente: '' }];

@@ -16,6 +16,8 @@ export class IniciarSesionComponent implements OnInit {
   public authDTO: AuthDTO = { identificador: '', contrasenia: '' };
   public tipo: string = '';
 
+  public isCreador: boolean = false;
+
   errorRegistro: boolean = false;
   errorIdentificador: boolean = false;
   errorContrasenia: boolean = false;
@@ -30,8 +32,7 @@ export class IniciarSesionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.tipo = 'vacio';
-    this.sharedService.setTipo(this.tipo);
+
   }
 
   async iniciarSesion(): Promise<void> {
@@ -39,12 +40,9 @@ export class IniciarSesionComponent implements OnInit {
 
     if (!this.validarCampos()) return;
 
-    localStorage.removeItem('token');
-
     try {
       const response = await this.authService.iniciarSesionCreador(this.authDTO).toPromise();
-      this.tipo = 'creador';
-      this.sharedService.setTipo(this.tipo);
+
       // localStorage.setItem('token', response.token);
       this.router.navigate(['/ingresar']);
     } catch (error) {

@@ -5,17 +5,10 @@ import { Injectable } from '@angular/core';
 })
 export class SharedService {
 
-  private tipo: string ="";
+  private isCreador: boolean = false;
   private recetaAlmacenada: number = 0;
   constructor() { }
 
-  setTipo(tipo: string): void {
-    this.tipo = tipo;
-  }
-
-  getTipo(): string {
-    return this.tipo;
-  }
 
   getrecetaAlmacenada(): number {
     return this.recetaAlmacenada;

@@ -1,4 +1,9 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
+import { AuthInterceptor } from './services/auth.interceptor';
+import { AppComponent } from "./app.component";
+import { provideHttpClient, withInterceptors } from "@angular/common/http";
+
 
 export const routes: Routes = [
   {
@@ -34,26 +39,32 @@ export const routes: Routes = [
   },
   {
     path: 'ingresar',
+    canActivate: [AuthGuard],
+
     loadComponent: () => import('./creador/creador.component').then(m => m.CreadorComponent),
     children:[
       {
         path: '',
         title: '',
+        canActivate: [AuthGuard],
         loadComponent: () => import('./creador/gestionar-receta-creador/gestionar-receta-creador.component').then(m => m.GestionarRecetaCreadorComponent),
       },
       {
         path: 'gestionDeRecetas',
         title: 'Gestion De Recetas',
+        canActivate: [AuthGuard],
         loadComponent: () => import('./creador/gestionar-receta-creador/gestionar-receta-creador.component').then(m => m.GestionarRecetaCreadorComponent),
       },
       {
         path: 'miPerfil',
         title: 'Mi Perfil',
+        canActivate: [AuthGuard],
         loadComponent: () => import('./creador/perfil-creador/perfil-creador.component').then(m => m.PerfilCreadorComponent),
       },
       {
         path: 'crearReceta',
         title: 'Crear Receta',
+        canActivate: [AuthGuard],
         loadComponent: () => import('./creador/crear-receta-creador/crear-receta-creador.component').then(m => m.CrearRecetaCreadorComponent),
       }
     ]
@@ -126,5 +137,13 @@ export const routes: Routes = [
     path: '**',
     redirectTo: '/explorador',
     pathMatch: 'full'
+  },
+  {
+    path: '',
+    component: AppComponent,
+    providers: [
+      provideHttpClient(withInterceptors([AuthInterceptor])) // Registra el interceptor basado en función
+    ]
   }
+
 ];

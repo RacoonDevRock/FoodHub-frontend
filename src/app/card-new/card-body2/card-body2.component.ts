@@ -34,6 +34,8 @@ export class CardBody2Component implements OnInit {
         }
       );
     });
+
+
   }
 
   goBack() {

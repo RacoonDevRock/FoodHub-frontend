@@ -7,6 +7,7 @@ import {FooterComponent} from "../footer/footer.component";
 import {SideCategoriasComponent} from "./side-categorias/side-categorias.component";
 import {NgClass} from "@angular/common";
 import {AppSideCategoriasMvComponent} from "./side-categorias-mv/app-side-categorias-mv.component";
+import {AuthService} from "../services/auth.service";
 
 @Component({
   selector: 'app-categorias',
@@ -26,18 +27,26 @@ import {AppSideCategoriasMvComponent} from "./side-categorias-mv/app-side-catego
 export class CategoriasComponent implements OnInit {
   title = 'categorias';
 
-  public tipo: string = '';
+  public isCreador: boolean = false;
   public header: number = 0;
 
-  constructor(private sharedService: SharedService) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    this.tipo = this.sharedService.getTipo();
-    console.log('tipo de muestra: ', this.tipo);
-    if (this.tipo !== 'creador') {
-      this.header = 1;
-    } else {
-      this.header = 2;
-    }
+    this.authService.isAuthenticated().subscribe(isAuth => {
+      if (isAuth) {
+        // Si el usuario está autenticado, muestra el header 1
+        this.header = 1;
+        console.log('Usuario autenticado, mostrando header 1');
+      } else {
+        // Si el usuario no está autenticado, muestra el header 2
+        this.header = 2;
+        console.log('Usuario no autenticado, mostrando header 2');
+      }
+    }, error => {
+      // Maneja errores de la solicitud al backend
+      console.error('Error al verificar autenticación', error);
+      this.header = 2; // Si hay error, asume que no está autenticado
+    });
   }
 }

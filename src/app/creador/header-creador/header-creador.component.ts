@@ -36,9 +36,7 @@ export class HeaderCreadorComponent implements OnInit{
   constructor(private sharedService: SharedService, private router: Router, private creadorService: CreadorService) {}
 
   ngOnInit() {
-    this.tipo = 'vacio';
-    this.sharedService.setTipo(this.tipo);
-    console.log('tipo vacio: ', this.tipo);
+
     this.obtenerDatosPerfilCreador();
 
   }
@@ -49,11 +47,7 @@ export class HeaderCreadorComponent implements OnInit{
     });
   }
 
-  llevarCreador() {
-    this.tipo = 'creador';
-    this.sharedService.setTipo(this.tipo);
-    console.log('tipo explorador: ', this.tipo);
-  }
+
   isActive(route: string): boolean {
     return this.router.url === route;
   }

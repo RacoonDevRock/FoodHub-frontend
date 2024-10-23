@@ -3,6 +3,9 @@ import { CreadorDTO } from '../../interfaces/CreadorDTO';
 import { CreadorService } from '../../services/creador.service';
 import { environment } from '../../../environments/environment.development';
 import { CreadorProfileDTO } from '../../interfaces/CreadorProfileDTO';
+import {CookieService} from "ngx-cookie-service";
+import {Router} from "@angular/router";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-perfil-creador',
@@ -29,10 +32,11 @@ export class PerfilCreadorComponent implements OnInit {
 
   public urlImages: string = `${environment.apiUrl}/imagenes/`;
 
-  constructor(private creadorService: CreadorService) {}
+  constructor(private creadorService: CreadorService,   private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.obtenerDatosPerfilCreador();
+
   }
 
   obtenerDatosPerfilCreador() {

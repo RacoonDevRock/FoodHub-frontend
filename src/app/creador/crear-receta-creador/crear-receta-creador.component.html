@@ -109,11 +109,10 @@
           [class.error]="errorRegistro"
           class="custom-selector"
           required
-          name="categoria"
           [(ngModel)]="categoria"
           [ngModelOptions]="{ standalone: true }"
         >
-          <option value="NINGUNO" disabled selected>
+          <option [ngValue]="null" disabled selected>
             Selecciona una categoría
           </option>
           <option value="DESAYUNO">Desayuno</option>
@@ -122,6 +121,7 @@
           <option value="POSTRES">Postres</option>
           <option value="SUPERAVIT">Superavit</option>
           <option value="DEFICIT">Deficit</option>
+
         </select>
       </div>
 
