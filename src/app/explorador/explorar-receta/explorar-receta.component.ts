@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CategoriasComponent} from "../../categorias/categorias.component";
 import {HeaderExploradorComponent} from "../header-explorador/header-explorador.component";
+import {SharedService} from "../../services/shared.service";
 
 @Component({
   selector: 'app-explorar-receta',
@@ -12,6 +13,14 @@ import {HeaderExploradorComponent} from "../header-explorador/header-explorador.
   templateUrl: './explorar-receta.component.html',
   styleUrl: './explorar-receta.component.css'
 })
-export class ExplorarRecetaComponent {
+export class ExplorarRecetaComponent implements OnInit{
+
+  constructor( private sharedService: SharedService) {
+  }
+
+  ngOnInit() {
+    this.sharedService.setBooleanVariable(false);
+
+  }
 
 }

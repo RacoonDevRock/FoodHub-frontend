@@ -16,6 +16,8 @@ export class IniciarSesionComponent implements OnInit {
   public authDTO: AuthDTO = { identificador: '', contrasenia: '' };
   public tipo: string = '';
 
+  mostrarModalSesionExpirada: boolean = false;
+
   public isCreador: boolean = false;
 
   errorRegistro: boolean = false;
@@ -33,6 +35,19 @@ export class IniciarSesionComponent implements OnInit {
 
   ngOnInit(): void {
 
+    localStorage.setItem('sesion', 'false');
+
+    this.sharedService.setBooleanVariable(false);
+
+    console.log("HOLAAAAAA"+ this.sharedService.getBooleanVariable())
+
+
+    // Nos suscribimos al estado del modal de sesión expirada
+    this.sharedService.obtenerEstadoModalSesionExpirada().subscribe(
+      (estado) => {
+        this.mostrarModalSesionExpirada = estado;
+      }
+    );
   }
 
   async iniciarSesion(): Promise<void> {
@@ -45,6 +60,11 @@ export class IniciarSesionComponent implements OnInit {
 
       // localStorage.setItem('token', response.token);
       this.router.navigate(['/ingresar']);
+
+      this.sharedService.setBooleanVariable(true);
+      console.log("HOLAAAAAA"+ this.sharedService.getBooleanVariable())
+
+
     } catch (error) {
       this.manejarErrorSesion(error);
     }
@@ -108,5 +128,18 @@ export class IniciarSesionComponent implements OnInit {
   validarCorreo(correo: string): boolean {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(correo);
+  }
+
+
+
+  cerrarModalSesionExpirada(): void {
+
+    console.log("HOLAAAAAA"+ this.sharedService.getBooleanVariable())
+
+
+    this.mostrarModalSesionExpirada = false;
+    this.router.navigate(['/iniciarSesion']);
+    this.sharedService.activarModalSesionExpirada(false); // Desactivar modal
+    this.sharedService.setBooleanVariable(false);
   }
 }

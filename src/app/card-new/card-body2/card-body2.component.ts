@@ -41,4 +41,8 @@ export class CardBody2Component implements OnInit {
   goBack() {
     window.history.back();
   }
+
+  insertarEspaciosAutomaticos(texto: string): string {
+    return texto.replace(/([a-z])([A-Z])/g, '$1 $2');
+  }
 }

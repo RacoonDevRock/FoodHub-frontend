@@ -12,12 +12,12 @@
 
   @if(isDropdownOpenxs){
     <div class="flex flex-col text-white">
-      <button class="border-2 font-bold px-8 py-2 rounded-lg mt-3 hover:text-black hover:bg-white" [routerLink]="['/categoria/desayuno']" >Desayuno</button>
-      <button class="border-2 font-bold px-8 py-2 rounded-lg mt-3 hover:text-black hover:bg-white" [routerLink]="['/categoria/almuerzo']" >Almuerzo</button>
-      <button class="border-2 font-bold px-8 py-2 rounded-lg mt-3 hover:text-black hover:bg-white" [routerLink]="['/categoria/cena']">Cena</button>
-      <button class="border-2 font-bold px-8 py-2 rounded-lg mt-3 hover:text-black hover:bg-white" [routerLink]="['/categoria/postres']" >Postres</button>
-      <button class="border-2 font-bold px-8 py-2 rounded-lg mt-3 hover:text-black hover:bg-white" [routerLink]="['/categoria/superavit']" >Superávit</button>
-      <button class="border-2 font-bold px-8 py-2 rounded-lg mt-3 hover:text-black hover:bg-white" [routerLink]="['/categoria/deficit']">Déficit</button>
+      <button class="border-2 font-bold px-8 py-2 rounded-lg mt-3 hover:text-black hover:bg-white" [routerLinkActive]="['active']" [routerLink]="['/categoria/desayuno']" >Desayuno</button>
+      <button class="border-2 font-bold px-8 py-2 rounded-lg mt-3 hover:text-black hover:bg-white" [routerLinkActive]="['active']" [routerLink]="['/categoria/almuerzo']" >Almuerzo</button>
+      <button class="border-2 font-bold px-8 py-2 rounded-lg mt-3 hover:text-black hover:bg-white" [routerLinkActive]="['active']" [routerLink]="['/categoria/cena']">Cena</button>
+      <button class="border-2 font-bold px-8 py-2 rounded-lg mt-3 hover:text-black hover:bg-white" [routerLinkActive]="['active']" [routerLink]="['/categoria/postres']" >Postres</button>
+      <button class="border-2 font-bold px-8 py-2 rounded-lg mt-3 hover:text-black hover:bg-white" [routerLinkActive]="['active']" [routerLink]="['/categoria/superavit']" >Superávit</button>
+      <button class="border-2 font-bold px-8 py-2 rounded-lg mt-3 hover:text-black hover:bg-white" [routerLinkActive]="['active']" [routerLink]="['/categoria/deficit']">Déficit</button>
     </div>
   }
 

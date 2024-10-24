@@ -36,6 +36,10 @@ export class BodyCategoriaComponent implements OnInit {
     this.recetaService.mostrarRecetasPorCategoria(categoria).subscribe(
       (recetas) => {
         this.recipes = recetas;
+        if (this.recipes.length === 0) {
+          // Mostrar mensaje si no hay recetas en esta categoría
+          this.mensajeError = `No hay recetas en la categoría "${categoria}" por el momento.`;
+        }
       },
       (error) => {
         console.error(`Error: ${error.error.message}`);

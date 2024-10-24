@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { CreadorDTO } from '../../interfaces/CreadorDTO';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import {SharedService} from "../../services/shared.service";
 
 @Component({
   selector: 'app-crear-cuenta',
@@ -11,7 +12,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './crear-cuenta.component.html',
   styleUrl: './crear-cuenta.component.css',
 })
-export class CrearCuentaComponent {
+export class CrearCuentaComponent implements OnInit{
   mostrarModalCuentaCreada: boolean = false;
 
   // Errores
@@ -45,8 +46,14 @@ export class CrearCuentaComponent {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private sharedService: SharedService
   ) {}
+
+  ngOnInit() {
+    this.sharedService.setBooleanVariable(false);
+
+  }
 
   registrarCreador(): void {
     this.cargando = true;

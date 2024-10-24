@@ -30,6 +30,8 @@ export class PerfilCreadorComponent implements OnInit {
   imagen: string = '';
   errorRegistro: boolean = false;
 
+  mostrarModalNoDatosPerfil: boolean = false;
+
   public urlImages: string = `${environment.apiUrl}/imagenes/`;
 
   constructor(private creadorService: CreadorService,   private authService: AuthService, private router: Router) {}
@@ -40,9 +42,21 @@ export class PerfilCreadorComponent implements OnInit {
   }
 
   obtenerDatosPerfilCreador() {
-    this.creadorService.verPerfil().subscribe((response) => {
-      this.creadorDTO = response;
-    });
+    this.creadorService.verPerfil().subscribe(
+      (response) => {
+        this.creadorDTO = response;
+
+        // Si algunos campos importantes están vacíos, mostramos el modal
+        if (!this.creadorDTO.nombre || !this.creadorDTO.apellidoPaterno || !this.creadorDTO.correoElectronico) {
+          this.mostrarModalNoDatosPerfil = true;
+        }
+      },
+      (error) => {
+        // En caso de error, mostramos el modal
+        this.mostrarModalNoDatosPerfil = true;
+        console.error('Error al obtener los datos del perfil:', error);
+      }
+    );
   }
 
   triggerFileInput() {
@@ -82,5 +96,12 @@ export class PerfilCreadorComponent implements OnInit {
         }
       );
     }
+  }
+
+
+  cerrarModalSesionExpirada(): void {
+    this.mostrarModalNoDatosPerfil = false;
+    this.router.navigate(['/iniciarSesion']);
+
   }
 }

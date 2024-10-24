@@ -121,6 +121,7 @@
                 id="contrasenia"
                 class="p-2 border border-gray-300 rounded-lg w-full"
                 readonly
+                value="*************"
               />
             </div>
           </div>
@@ -128,4 +129,25 @@
       </div>
     </div>
   </div>
+
+  @if(mostrarModalNoDatosPerfil){
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
+      <div class="bg-white p-6 rounded-3xl shadow-2xl w-72 sh">
+        <p class="text-2xl font-semibold mb-4 text-center" style="color: #64B43E">Ups!..</p>
+        <div class="mx-auto">
+          <p class="text-justify">Los no se pueden mostrar debido a que no hay ninguna cuenta vinculada.</p>
+        </div>
+        <div class="flex justify-center">
+          <button (click)="cerrarModalSesionExpirada()" class="bg-[#ee8326] hover:bg-[#c76d21] font-semibold text-white px-6 py-1 mt-5 text-lg rounded-2xl">Empezar</button>
+        </div>
+      </div>
+    </div>
+
+  }
+
+
+
+
+
+
 </main>

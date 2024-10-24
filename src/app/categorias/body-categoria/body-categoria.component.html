@@ -2,7 +2,7 @@
   <!-- Contenedor de recetas -->
   <div class="flex flex-wrap justify-start ml-7 flex-grow">
     @if (recipes.length === 0) {
-      <div class="text-center w-full h-full mt-10 py-60">
+      <div class="text-center w-full h-full mt-10 ">
         <p class="text-lg font-semibold">
           {{ mensajeError }}
         </p>
@@ -12,13 +12,13 @@
     <!-- *ngFor para recorrer las recetas -->
     <div
       *ngFor="let recipe of recipes | paginate: { itemsPerPage: 6, currentPage: page }"
-      class="cursor-pointer card w-full lg:w-[calc(32%-20px)] h-[275px] shadow-lg transition-transform duration-300 ease-in-out mt-10 mr-5 ml-2 flex flex-col bg-white hover:scale-105"
+      class="cursor-pointer card rounded-2xl w-full lg:w-[calc(32%-20px)] h-[375px] shadow-lg transition-transform duration-300 ease-in-out mt-10 mr-5 ml-2 flex flex-col bg-white hover:scale-105"
       (click)="verContenido(recipe)"
     >
       <img
         [src]="urlImages + recipe.imagenReceta"
         [alt]="recipe.titulo"
-        class="w-full h-[140px] object-cover"
+        class="w-full h-[250px] object-cover"
       />
 
       <div class="p-4">

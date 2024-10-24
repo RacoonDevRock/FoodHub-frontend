@@ -1,8 +1,5 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
-import { AuthInterceptor } from './services/auth.interceptor';
-import { AppComponent } from "./app.component";
-import { provideHttpClient, withInterceptors } from "@angular/common/http";
 
 
 export const routes: Routes = [
@@ -16,7 +13,7 @@ export const routes: Routes = [
         loadComponent: () => import('./explorador/inicio-explorador/inicio-creador.component').then(m => m.InicioCreadorComponent),
       },
       {
-        path: 'explorarRecetas',
+        path: 'ksdflsd',
         title: 'Explorar Recetas',
         loadComponent: () => import('./explorador/explorar-receta/explorar-receta.component').then(m => m.ExplorarRecetaComponent),
       },
@@ -137,13 +134,6 @@ export const routes: Routes = [
     path: '**',
     redirectTo: '/explorador',
     pathMatch: 'full'
-  },
-  {
-    path: '',
-    component: AppComponent,
-    providers: [
-      provideHttpClient(withInterceptors([AuthInterceptor])) // Registra el interceptor basado en función
-    ]
   }
 
 ];

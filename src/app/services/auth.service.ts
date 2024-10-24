@@ -30,7 +30,8 @@ export class AuthService {
       withCredentials: true,
     }).pipe(
       tap(() => {
-        localStorage.setItem('isLoggedIn', 'true'); // Actualizar el estado de sesión en localStorage
+        localStorage.setItem('sesion', 'true');
+
       })
     );
   }
